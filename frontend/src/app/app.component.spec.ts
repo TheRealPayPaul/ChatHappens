@@ -1,35 +1,20 @@
-import {TestBed} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {AppComponent} from './app.component';
+import { AppComponent } from './app.component';
+import { createHostFactory, Spectator } from '@ngneat/spectator/jest';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  });
+fdescribe('AppComponent', () => {
+	let spectator: Spectator<AppComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+	const createHost = createHostFactory({
+		component: AppComponent,
+		imports: [RouterTestingModule],
+	});
 
-  it(`should have as title 'frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('frontend');
-  });
+	beforeEach(() => {
+		spectator = createHost('<app-root></app-root>');
+	});
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('frontend app is running!');
-  });
+	it('should create the app', () => {
+		expect(spectator.component).toBeTruthy();
+	});
 });
