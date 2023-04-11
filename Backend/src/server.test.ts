@@ -3,9 +3,13 @@ import { server } from './server';
 
 const request = supertest(server);
 
-it('Gets / endpoint', async () => {
-    const response = await request.get('/');
+describe('server.ts', () => {
 
-    expect(response.status).toBe(200);
-    expect(response.body.message).toBe('Hello World!!');
+    it('should send a GET request to the path "/" and get "Hello World!!" in the message variable in return', async () => {
+        const response = await request.get('/');
+
+        expect(response.status).toBe(200);
+        expect(response.body.message).toBe('Hello World!!');
+    });
+
 });
