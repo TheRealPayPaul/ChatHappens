@@ -1,1 +1,31 @@
-<p>register works!</p>
+<app-logo></app-logo>
+<app-card title="Register" class="register-form-container">
+	<div [formGroup]="form" class="register-form">
+<!--        TODO Save inputs in array and generate them with ngFor-->
+		<app-input
+			formControlName="email"
+			type="email"
+			label="Email"
+			[errors]="form.controls['email'].errors"
+		></app-input>
+		<app-input
+			formControlName="username"
+			label="Username"
+			[errors]="form.controls['username'].errors"
+		></app-input>
+		<app-input
+			formControlName="password"
+			type="password"
+			label="Password"
+			[errors]="form.controls['password'].errors"
+		></app-input>
+		<app-input
+			formControlName="repeatPassword"
+			type="password"
+			label="Repeat password"
+			[errors]="form.controls['repeatPassword'].errors"
+		></app-input>
+		<button (click)="register()" [disabled]="!form.valid">Register</button>
+		<a routerLink="login">Login now</a>
+	</div>
+</app-card>

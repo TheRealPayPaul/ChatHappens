@@ -1,0 +1,5 @@
+<label>
+	{{ label }}
+	<input [type]="type" [(ngModel)]="value" [placeholder]="label" />
+	<span *ngIf="errors">{{ errors | json }}</span>
+</label>
