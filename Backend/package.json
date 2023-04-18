@@ -5,7 +5,8 @@
     "test": "jest",
     "start": "tsc && node ./dist/index.js",
     "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.test.ts\" --exec \"ts-node src/index.ts\"",
-    "RebuildPrismaClient": "prisma generate"
+    "RebuildPrismaClient": "prisma generate",
+    "SyncDB": "prisma migrate dev"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
