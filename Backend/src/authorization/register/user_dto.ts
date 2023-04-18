@@ -1,4 +1,4 @@
-import DTO from './dto';
+import DTO from '../../core/dto';
 
 export default class UserDTO extends DTO {
     public readonly id?: number

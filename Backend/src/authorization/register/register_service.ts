@@ -1,8 +1,8 @@
-import Service from './service';
+import Service from '../../core/service';
 import UserDTO from './user_dto';
 import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
-import { EMAIL_ALREADY_EXISTS, SENT_DATA_INVALID, SENT_PASSWORD_NOT_THE_SAME } from './error_codes';
+import { EMAIL_ALREADY_EXISTS, SENT_DATA_INVALID, SENT_PASSWORD_NOT_THE_SAME } from '../../core/error_codes';
 
 const client = new PrismaClient();
 
