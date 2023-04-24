@@ -1,7 +1,9 @@
 import { server } from './server';
+import dotenv from 'dotenv';
 
-const port = 3000;
+// Imports .env
+dotenv.config();
 
-server.listen(port, () => {
-    console.log(`Chat Happens listening on port ${port}`);
+server.listen(process.env.WEBSERVER_PORT, () => {
+    console.log(`Chat Happens listening on port ${process.env.WEBSERVER_PORT}`);
 });
