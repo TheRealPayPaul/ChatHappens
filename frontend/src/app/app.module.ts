@@ -8,6 +8,7 @@ import { InputComponent } from './components/input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './components/card/card.component';
 import { LogoComponent } from './components/logo/logo.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
 	declarations: [
@@ -22,6 +23,7 @@ import { LogoComponent } from './components/logo/logo.component';
 		AppRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
+		NgOptimizedImage,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

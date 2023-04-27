@@ -4,6 +4,7 @@ import {
 	NG_VALUE_ACCESSOR,
 	ValidationErrors,
 } from '@angular/forms';
+import { InputType } from './input-type.enum';
 
 @Component({
 	selector: 'app-input',
@@ -18,12 +19,13 @@ import {
 	],
 })
 export class InputComponent implements ControlValueAccessor {
-	@Input() type: string = 'text'; // TODO create enum with types
+	@Input() type: InputType = InputType.TEXT;
 	@Input() label: string;
 	@Input() errors?: ValidationErrors | null;
+	@Input() infoIconPath?: string;
 
-	onChange: (val: any) => {};
-	onTouched: (val: any) => {};
+	onChange: (val: any) => void;
+	onTouched: (val: any) => void;
 
 	private _value: string;
 

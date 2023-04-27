@@ -1,10 +1,10 @@
 <app-logo></app-logo>
 <app-card title="Register" class="register-form-container">
 	<div [formGroup]="form" class="register-form">
-<!--        TODO Save inputs in array and generate them with ngFor-->
+		<!--        TODO Save inputs in array and generate them with ngFor-->
 		<app-input
 			formControlName="email"
-			type="email"
+			[type]="InputType.EMAIL"
 			label="Email"
 			[errors]="form.controls['email'].errors"
 		></app-input>
@@ -15,13 +15,13 @@
 		></app-input>
 		<app-input
 			formControlName="password"
-			type="password"
+			[type]="InputType.PASSWORD"
 			label="Password"
 			[errors]="form.controls['password'].errors"
 		></app-input>
 		<app-input
 			formControlName="repeatPassword"
-			type="password"
+			[type]="InputType.PASSWORD"
 			label="Repeat password"
 			[errors]="form.controls['repeatPassword'].errors"
 		></app-input>

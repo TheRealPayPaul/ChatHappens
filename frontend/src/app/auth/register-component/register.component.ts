@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { map, Observable } from 'rxjs';
+import { InputType } from '../../components/input/input-type.enum';
 
 @Component({
 	selector: 'app-register',
@@ -17,6 +18,8 @@ import { map, Observable } from 'rxjs';
 })
 export class RegisterComponent {
 	form: FormGroup;
+
+	InputType: typeof InputType = InputType;
 
 	constructor(
 		private authenticationService: AuthenticationService,
