@@ -5,5 +5,5 @@
 		<input [type]="type" [(ngModel)]="value" [placeholder]="label" />
 		<img class="error-icon" src="/assets/error.svg" />
 	</div>
-	<span *ngIf="errors">{{ errors | json }}</span>
+	<span class="errors" *ngIf="errors">{{ errors | json }}</span>
 </label>
