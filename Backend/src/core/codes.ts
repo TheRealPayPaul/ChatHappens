@@ -6,7 +6,7 @@ export enum ErrorCode {
     CREDENTIALS_INVALID = 4
 }
 
-export enum StatusCodes {
+export enum StatusCode {
     CONTINUE = 100,
     SWITCHING_PROTOCOLS = 101,
     PROCESSING = 102,

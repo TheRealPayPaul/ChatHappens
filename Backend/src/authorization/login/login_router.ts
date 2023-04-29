@@ -1,11 +1,9 @@
 import express from "express";
-import asyncHandler from "express-async-handler";
-import LoginService from "./login_service";
+import LoginController from "./login_controller";
 const router = express.Router();
 
-router.post('/', asyncHandler(async (req, res) => {
-    let serviceResult = await LoginService.login(req);
-    serviceResult.send(res);
-}));
+router.post('/', (req, res) => {
+    LoginController.handle(req, res);
+});
 
 export default router;
