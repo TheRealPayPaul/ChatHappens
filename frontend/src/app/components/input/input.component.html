@@ -2,8 +2,13 @@
 	{{ label }}
 	<div class="input-container">
 		<img *ngIf="infoIconPath" class="info-icon" [src]="infoIconPath" />
-		<input [type]="type" [(ngModel)]="value" [placeholder]="label" />
-		<img class="error-icon" src="/assets/error.svg" />
+		<input
+			[type]="type"
+			[(ngModel)]="value"
+			(blur)="touched()"
+			[placeholder]="label"
+		/>
+		<img class="error-icon" src="/assets/error.svg" alt="Errors" />
 	</div>
 	<span class="errors" *ngIf="errors">{{ errors | json }}</span>
 </label>

@@ -5,7 +5,7 @@ $border-size: 2px;
 :host {
 	width: 100%;
 
-	&.ng-invalid:not(.ng-untouched) {
+	&.ng-invalid.ng-dirty {
 		.input-container {
 			border: $border-size solid $color-red-neon;
 		}
