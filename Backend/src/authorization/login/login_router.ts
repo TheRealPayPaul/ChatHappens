@@ -1,10 +1,10 @@
 import express from "express";
-import RegisterService from "./register_service";
 import asyncHandler from "express-async-handler";
+import LoginService from "./login_service";
 const router = express.Router();
 
 router.post('/', asyncHandler(async (req, res) => {
-    let serviceResult = await RegisterService.createUser(req.body);
+    let serviceResult = await LoginService.login(req);
     serviceResult.send(res);
 }));
 
