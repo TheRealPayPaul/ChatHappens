@@ -1,29 +1,56 @@
-@import "variables";
+@import 'variables';
 
 $border-size: 2px;
 
 :host {
-    width: 100%;
+	width: 100%;
 
-    &.ng-invalid:not(.ng-untouched) {
-        input {
-            border: $border-size solid $color-red-neon;
-        }
-    }
+	&.ng-invalid:not(.ng-untouched) {
+		.input-container {
+			border: $border-size solid $color-red-neon;
+		}
+
+		.error-icon {
+			display: flex;
+		}
+	}
 }
 
 label {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.9rem;
+	display: flex;
+	flex-direction: column;
+	font-size: 0.9rem;
 }
 
-input {
-    background: $color-fill;
-    border: $border-size solid $color-blue-neon;
-    border-radius: 0;
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    color: $color-text;
-    outline: none;
+.input-container {
+	display: flex;
+	align-items: center;
+	background: $color-fill;
+	border: $border-size solid $color-blue-neon;
+	border-radius: 0;
+
+	input {
+		width: 100%;
+		padding: 0.8rem 0.5rem;
+		font-size: 1rem;
+		color: $color-text;
+		outline: none;
+		border: none;
+		background: none;
+	}
+
+	.info-icon,
+	.error-icon {
+		height: 34px;
+		width: auto;
+	}
+
+	.info-icon {
+		margin-left: 6px;
+	}
+
+	.error-icon {
+		display: none;
+		margin-right: 6px;
+	}
 }

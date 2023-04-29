@@ -1,5 +1,9 @@
 <label>
 	{{ label }}
-	<input [type]="type" [(ngModel)]="value" [placeholder]="label" />
+	<div class="input-container">
+		<img *ngIf="infoIconPath" class="info-icon" [src]="infoIconPath" />
+		<input [type]="type" [(ngModel)]="value" [placeholder]="label" />
+		<img class="error-icon" src="/assets/error.svg" />
+	</div>
 	<span *ngIf="errors">{{ errors | json }}</span>
 </label>
