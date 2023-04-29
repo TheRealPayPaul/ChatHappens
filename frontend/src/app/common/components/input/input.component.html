@@ -10,5 +10,11 @@
 		/>
 		<img class="error-icon" src="/assets/error.svg" alt="Errors" />
 	</div>
-	<span class="errors" *ngIf="errors">{{ errors | json }}</span>
+	<span
+		*ngFor="let error of errors | keyvalue"
+		class="error"
+		appErrorMessage
+		[key]="error.key"
+		[params]="error.value | toStringArray"
+	></span>
 </label>

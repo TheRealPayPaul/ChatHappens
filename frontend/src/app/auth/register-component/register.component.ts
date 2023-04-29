@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { map, Observable } from 'rxjs';
-import { InputType } from '../../components/input/input-type.enum';
+import { InputType } from '../../common/components/input/input-type.enum';
 
 interface FormControlInfo {
 	name: string;
@@ -27,17 +27,17 @@ interface FormControlInfo {
 })
 export class RegisterComponent {
 	form: FormGroup;
-	formControlsInfo: FormControlInfo[];
+	formControlInfos: FormControlInfo[];
 
 	constructor(
 		private authenticationService: AuthenticationService,
 		private fb: FormBuilder
 	) {
-		this.formControlsInfo = [
+		this.formControlInfos = [
 			{
 				name: 'email',
 				inputType: InputType.EMAIL,
-				label: 'forms.label.email',
+				label: 'Email',
 				validators: [Validators.required, Validators.email],
 				asyncValidators: [
 					this.isEmailUnique(this.authenticationService),
@@ -46,28 +46,26 @@ export class RegisterComponent {
 			{
 				name: 'username',
 				inputType: InputType.TEXT,
-				label: 'forms.label.username',
+				label: 'Username',
 				validators: [Validators.required],
 			},
 			{
 				name: 'password',
 				inputType: InputType.PASSWORD,
-				label: 'forms.label.password',
+				label: 'Password',
 				validators: [Validators.required],
 			},
 			{
 				name: 'repeatPassword',
 				inputType: InputType.PASSWORD,
-				label: 'forms.label.repeat-password',
+				label: 'Repeat password',
 				validators: [Validators.required],
 			},
 		];
 
 		this.form = this.fb.group(
-			this.getFormGroupConfigFromInfo(this.formControlsInfo)
+			this.getFormGroupConfigFromInfo(this.formControlInfos)
 		);
-
-		console.log(this.formControlsInfo);
 	}
 
 	private getFormGroupConfigFromInfo(
