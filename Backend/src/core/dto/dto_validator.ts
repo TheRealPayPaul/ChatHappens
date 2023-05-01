@@ -1,4 +1,4 @@
-export default class DTO {
+export default class DTOValidator {
     private errors?: string[];
 
     protected clearErrors() {
