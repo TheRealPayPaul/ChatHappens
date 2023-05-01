@@ -5,6 +5,7 @@ import UserDTO from '../../core/dto/user/user_dto';
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import UserDTOValidator from '../../core/dto/user/user_dto_validator';
+import JWTService from '../../core/service/jwt_service';
 
 export default class RegisterController extends Controller {
 
@@ -51,6 +52,8 @@ export default class RegisterController extends Controller {
             password: this.createPasswordHash(user.password as string),
         });
 
+        // Create and Set JWT Token as Cookie
+        JWTService.initTokenAsCookie(newUser, res);
         res
             .status(StatusCode.OK)
             .json(UserDTO.createFromDB(newUser));
