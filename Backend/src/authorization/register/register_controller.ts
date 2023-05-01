@@ -1,10 +1,10 @@
-import { ErrorCode, StatusCode } from "../../core/codes";
-import Controller from "../../core/controller";
-import UserService from "../../core/service/user_service";
-import UserDTO from "../../core/dto/user/user_dto";
-import { Request, Response } from "express";
+import { ErrorCode, StatusCode } from '../../core/codes';
+import Controller from '../../core/controller';
+import UserService from '../../core/service/user_service';
+import UserDTO from '../../core/dto/user/user_dto';
+import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import UserDTOValidator from "../../core/dto/user/user_dto_validator";
+import UserDTOValidator from '../../core/dto/user/user_dto_validator';
 
 export default class RegisterController extends Controller {
 
@@ -20,10 +20,10 @@ export default class RegisterController extends Controller {
      * @param res :Response (express)
      */
     public static async handle(req: Request, res: Response) {
-        let user = new UserDTO(req.body);
+        const user = new UserDTO(req.body);
 
         // Check if data from client is valid
-        let userValidator = new UserDTOValidator();
+        const userValidator = new UserDTOValidator();
         if (!userValidator.isValidCreateUser(user)) {
             this.sendError({
                 Message: userValidator.getErrors(),
@@ -52,8 +52,8 @@ export default class RegisterController extends Controller {
         });
 
         res
-        .status(StatusCode.OK)
-        .json(UserDTO.createFromDB(newUser));
+            .status(StatusCode.OK)
+            .json(UserDTO.createFromDB(newUser));
     }
 
     private static createPasswordHash(password: string): string {

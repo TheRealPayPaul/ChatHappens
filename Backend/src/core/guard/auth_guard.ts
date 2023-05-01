@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from "express";
-import { StatusCode } from "../codes";
-import Jwt from "jsonwebtoken";
-import EnvService from "../service/env_service";
+import { NextFunction, Request, Response } from 'express';
+import { StatusCode } from '../codes';
+import Jwt from 'jsonwebtoken';
+import EnvService from '../service/env_service';
 
 export function AuthGuardLoggedIn(req: Request, res: Response, next: NextFunction) {
     

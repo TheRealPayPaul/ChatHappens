@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
-import Controller from "../../core/controller";
-import { ErrorCode, StatusCode } from "../../core/codes";
-import Credentials from "./model/credentials";
-import Jwt from "jsonwebtoken";
-import { User } from "@prisma/client";
-import UserService from "../../core/service/user_service";
-import EnvService from "../../core/service/env_service";
+import { Request, Response } from 'express';
+import Controller from '../../core/controller';
+import { ErrorCode, StatusCode } from '../../core/codes';
+import Credentials from './model/credentials';
+import Jwt from 'jsonwebtoken';
+import { User } from '@prisma/client';
+import UserService from '../../core/service/user_service';
+import EnvService from '../../core/service/env_service';
 
 export default class LoginController extends Controller {
 
@@ -21,9 +21,9 @@ export default class LoginController extends Controller {
      */
     public static async handle(req: Request, res: Response) {
         // Checks if the authorization header is set
-        if (req.headers["authorization"] == null) {
+        if (req.headers['authorization'] == null) {
             this.sendError({
-                Message: "Authorization Header is missing!",
+                Message: 'Authorization Header is missing!',
                 ErrorCode: ErrorCode.AUTH_HEADER_MISSING,
                 StatusCode: StatusCode.BAD_REQUEST,
             }, res);
@@ -31,11 +31,11 @@ export default class LoginController extends Controller {
         }
 
         // Checks if credentials and user in DB match
-        let credentials = new Credentials(req.headers["authorization"]);
-        let user = await UserService.getByEmail(credentials.Email);
+        const credentials = new Credentials(req.headers['authorization']);
+        const user = await UserService.getByEmail(credentials.Email);
         if (!credentials.areValid(user)) {
             this.sendError({
-                Message: "Credentials are invalid!",
+                Message: 'Credentials are invalid!',
                 ErrorCode: ErrorCode.CREDENTIALS_INVALID,
                 StatusCode: StatusCode.UNAUTHORIZED,
             }, res);
@@ -43,27 +43,27 @@ export default class LoginController extends Controller {
         }
 
         // Creates the JWT Token and Cookie expiration date
-        let jwtToken = this.createJWTToken(user as User); // User NULL check by 'credentials.areValid' 
-        let expires = this.createCookieExpirationDate();
+        const jwtToken = this.createJWTToken(user as User); // User NULL check by 'credentials.areValid' 
+        const expires = this.createCookieExpirationDate();
 
         res
-        .cookie("jwt", jwtToken, { expires })
-        .sendStatus(StatusCode.OK);
+            .cookie('jwt', jwtToken, { expires })
+            .sendStatus(StatusCode.OK);
     }
 
     private static createJWTToken(user: User): string {
-        let payLoad = {
+        const payLoad = {
             id: user.user_id,
             display_name: user.display_name
-        }
-        let options = {
+        };
+        const options = {
             expiresIn: `${EnvService.getJwtTTL()}d`
-        }
+        };
         return Jwt.sign(payLoad, EnvService.getJwtSecret(), options);
     }
 
     private static createCookieExpirationDate(): Date {
-        let expirationDate = new Date();
+        const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + parseInt(EnvService.getJwtTTL()));
         return expirationDate;
     }

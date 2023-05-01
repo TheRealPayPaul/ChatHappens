@@ -1,12 +1,12 @@
 import { User } from '@prisma/client';
 
 export default class UserDTO {
-    public id?: string
-    public email?: string
-    public display_name?: string
-    public password?: string
-    public profile_picture?: string
-    public created_on?: string
+    public id?: string;
+    public email?: string;
+    public display_name?: string;
+    public password?: string;
+    public profile_picture?: string;
+    public created_on?: string;
 
     public constructor(data: Partial<UserDTO>) {
         this.id = data.id;

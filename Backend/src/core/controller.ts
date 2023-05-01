@@ -1,5 +1,5 @@
-import { Response } from "express";
-import { ErrorCode, StatusCode } from "./codes";
+import { Response } from 'express';
+import { ErrorCode, StatusCode } from './codes';
 
 interface SendErrorBuilder {
     Message: string | string[]
@@ -12,7 +12,7 @@ export default class Controller {
     protected static sendError(data: SendErrorBuilder, res: Response) {
         res.status(data.StatusCode);
         
-        let errors = Array.isArray(data.Message) ? data.Message : [ data.Message ];
+        const errors = Array.isArray(data.Message) ? data.Message : [ data.Message ];
 
         res.json({
             error_code: data.ErrorCode,
