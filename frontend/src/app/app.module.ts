@@ -10,6 +10,7 @@ import { CardComponent } from './common/components/card/card.component';
 import { LogoComponent } from './common/components/logo/logo.component';
 import { ErrorMessageDirective } from './common/directives/error-message/error-message.directive';
 import { ToStringArrayPipe } from './common/pipes/to-string-array.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,7 @@ import { ToStringArrayPipe } from './common/pipes/to-string-array.pipe';
 		AppRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
+		HttpClientModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
