@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserDTO } from './user.dto';
+import { UserDTO } from './user-dto.model';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

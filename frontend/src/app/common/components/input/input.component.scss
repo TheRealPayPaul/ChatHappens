@@ -14,7 +14,7 @@ $border-size: 2px;
 			display: flex;
 		}
 
-        .errors {
+        .error {
             display: block;
         }
 	}
@@ -26,7 +26,7 @@ label {
 	font-size: 0.9rem;
 }
 
-.errors {
+.error {
     display: none;
     color: $color-red-neon;
 }

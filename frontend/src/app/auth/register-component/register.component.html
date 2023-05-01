@@ -1,7 +1,7 @@
 <app-logo></app-logo>
 <app-card title="Register" class="register-form-container">
 	<div [formGroup]="form" class="register-form">
-		<ng-container *ngFor="let control of formControlsInfo">
+		<ng-container *ngFor="let control of formControlInfos">
 			<app-input
 				[formControlName]="control.name"
 				[type]="control.inputType"
