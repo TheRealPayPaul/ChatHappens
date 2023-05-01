@@ -5,11 +5,20 @@ import {
 	FormBuilder,
 	FormGroup,
 	ValidationErrors,
+	ValidatorFn,
 	Validators,
 } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { map, Observable } from 'rxjs';
 import { InputType } from '../../components/input/input-type.enum';
+
+interface FormControlInfo {
+	name: string;
+	inputType: InputType;
+	label: string;
+	validators?: ValidatorFn[];
+	asyncValidators?: AsyncValidatorFn[];
+}
 
 @Component({
 	selector: 'app-register',
@@ -18,27 +27,63 @@ import { InputType } from '../../components/input/input-type.enum';
 })
 export class RegisterComponent {
 	form: FormGroup;
-
-	InputType: typeof InputType = InputType;
+	formControlsInfo: FormControlInfo[];
 
 	constructor(
 		private authenticationService: AuthenticationService,
 		private fb: FormBuilder
 	) {
-		this.form = this.fb.group({
-			email: [
+		this.formControlsInfo = [
+			{
+				name: 'email',
+				inputType: InputType.EMAIL,
+				label: 'forms.label.email',
+				validators: [Validators.required, Validators.email],
+				asyncValidators: [
+					this.isEmailUnique(this.authenticationService),
+				],
+			},
+			{
+				name: 'username',
+				inputType: InputType.TEXT,
+				label: 'forms.label.username',
+				validators: [Validators.required],
+			},
+			{
+				name: 'password',
+				inputType: InputType.PASSWORD,
+				label: 'forms.label.password',
+				validators: [Validators.required],
+			},
+			{
+				name: 'repeatPassword',
+				inputType: InputType.PASSWORD,
+				label: 'forms.label.repeat-password',
+				validators: [Validators.required],
+			},
+		];
+
+		this.form = this.fb.group(
+			this.getFormGroupConfigFromInfo(this.formControlsInfo)
+		);
+
+		console.log(this.formControlsInfo);
+	}
+
+	private getFormGroupConfigFromInfo(
+		formControlsInfo: FormControlInfo[]
+	): any {
+		const result: { [name: string]: any[] } = {};
+		formControlsInfo.forEach((control: FormControlInfo) => {
+			result[control.name] = [
 				'',
 				{
-					validators: [Validators.required, Validators.email],
-					asyncValidators: [
-						this.isEmailUnique(this.authenticationService),
-					],
+					validators: control.validators,
+					asyncValidators: control.asyncValidators,
 				},
-			],
-			username: ['', [Validators.required]],
-			password: ['', [Validators.required]],
-			repeatPassword: ['', [Validators.required]],
+			];
 		});
+		return result;
 	}
 
 	register() {
@@ -47,23 +92,21 @@ export class RegisterComponent {
 			return;
 		}
 
-		this.authenticationService
-			.register(this.form.value)
-			.subscribe((data) => {
-				console.log('registered');
-				/*
+		this.authenticationService.register(this.form.value).subscribe(() => {
+			console.log('registered');
+			/*
                 TODO
                     login user
                     redirect to chat page
                  */
-			});
+		});
 	}
 
 	areEnteredPasswordsSame(): boolean {
 		const password = this.form.get('password')?.value;
-		const repeatedPassword = this.form.get('repeat-password')?.value;
+		const repeatedPassword = this.form.get('repeatPassword')?.value;
 
-		return password == repeatedPassword;
+		return password === repeatedPassword;
 	}
 
 	isEmailUnique(

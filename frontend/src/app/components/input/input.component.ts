@@ -24,8 +24,8 @@ export class InputComponent implements ControlValueAccessor {
 	@Input() errors?: ValidationErrors | null;
 	@Input() infoIconPath?: string;
 
+	onTouched: () => void;
 	onChange: (val: any) => void;
-	onTouched: (val: any) => void;
 
 	private _value: string;
 
@@ -36,7 +36,11 @@ export class InputComponent implements ControlValueAccessor {
 	set value(val: string) {
 		this._value = val;
 		this.onChange(val);
-		this.onTouched(val);
+		this.onTouched();
+	}
+
+	touched(): void {
+		this.onTouched();
 	}
 
 	writeValue(value: any): void {
