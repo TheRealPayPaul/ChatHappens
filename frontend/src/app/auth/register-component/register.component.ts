@@ -11,6 +11,8 @@ import {
 import { AuthenticationService } from '../authentication.service';
 import { map, Observable } from 'rxjs';
 import { InputType } from '../../common/components/input/input-type.enum';
+import { UserDTO } from '../user-dto.model';
+import { Router } from '@angular/router';
 
 interface FormControlInfo {
 	name: string;
@@ -30,8 +32,9 @@ export class RegisterComponent {
 	formControlInfos: FormControlInfo[];
 
 	constructor(
+		private fb: FormBuilder,
 		private authenticationService: AuthenticationService,
-		private fb: FormBuilder
+		private router: Router
 	) {
 		this.formControlInfos = [
 			{
@@ -90,14 +93,17 @@ export class RegisterComponent {
 			return;
 		}
 
-		this.authenticationService.register(this.form.value).subscribe(() => {
-			console.log('registered');
-			/*
-                TODO
-                    login user
-                    redirect to chat page
-                 */
-		});
+		this.authenticationService
+			.register(
+				new UserDTO({
+					email: this.form.get('email')?.value,
+					display_name: this.form.get('username')?.value,
+					password: this.form.get('password')?.value,
+				})
+			)
+			.subscribe(() => {
+				this.router.navigateByUrl('/chat');
+			});
 	}
 
 	areEnteredPasswordsSame(): boolean {
