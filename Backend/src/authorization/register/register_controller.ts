@@ -1,9 +1,10 @@
 import { ErrorCode, StatusCode } from "../../core/codes";
 import Controller from "../../core/controller";
 import UserService from "../../core/service/user_service";
-import UserDTO from "./user_dto";
+import UserDTO from "../../core/dto/user/user_dto";
 import { Request, Response } from "express";
 import bcrypt from 'bcrypt';
+import UserDTOValidator from "../../core/dto/user/user_dto_validator";
 
 export default class RegisterController extends Controller {
 
@@ -22,9 +23,10 @@ export default class RegisterController extends Controller {
         let user = new UserDTO(req.body);
 
         // Check if data from client is valid
-        if (!user.isValidCreateUser()) {
+        let userValidator = new UserDTOValidator();
+        if (!userValidator.isValidCreateUser(user)) {
             this.sendError({
-                Message: user.getErrors(),
+                Message: userValidator.getErrors(),
                 ErrorCode: ErrorCode.SENT_DATA_INVALID,
                 StatusCode: StatusCode.BAD_REQUEST,
             }, res);
@@ -56,7 +58,7 @@ export default class RegisterController extends Controller {
 
     private static createPasswordHash(password: string): string {
         const salt = bcrypt.genSaltSync();
-        return bcrypt.hashSync(password as string, salt);
+        return bcrypt.hashSync(password, salt);
     }
 
 }
