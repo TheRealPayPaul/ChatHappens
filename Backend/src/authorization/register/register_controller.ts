@@ -51,12 +51,7 @@ export default class RegisterController extends Controller {
 
         res
         .status(StatusCode.OK)
-        .json({
-            id: newUser.user_id,
-            email: newUser.email,
-            display_name: newUser.display_name,
-            created_on: newUser.created_on,
-        });
+        .json(UserDTO.createFromDB(newUser));
     }
 
     private static createPasswordHash(password: string): string {
