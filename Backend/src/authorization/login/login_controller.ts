@@ -9,6 +9,16 @@ import EnvService from "../../core/service/env_service";
 
 export default class LoginController extends Controller {
 
+    /**
+     * Handles the request and response of the /login route.
+     * Checks if sent login data is correct and valid.
+     * 
+     * If successful:
+     * JWT Token gets created and sent back via a 'Set-Cookie' header.
+     * 
+     * @param req :Request (express)
+     * @param res :Response (express)
+     */
     public static async handle(req: Request, res: Response) {
         // Checks if the authorization header is set
         if (req.headers["authorization"] == null) {
