@@ -19,6 +19,12 @@ export default class UserDTO extends DTO {
         this.created_on = data.created_on;
     }
 
+    /**
+     * Checks if the data of the object is complete.
+     * @required => email, display_name, password.
+     * 
+     * @returns boolean => true = valid
+     */
     public isValidCreateUser(): boolean {
         this.clearErrors();
 

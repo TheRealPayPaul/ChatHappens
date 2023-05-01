@@ -1,6 +1,9 @@
 import { User } from "@prisma/client";
 import bcrypt from 'bcrypt';
 
+/**
+ * Parses the credentials inside the Auhtorization Header string into a usable object.
+ */
 export default class Credentials {
 
     public readonly Email: string;
@@ -24,6 +27,12 @@ export default class Credentials {
         this.Password = credentialParts[1];
     }
 
+    /**
+     * Checks if the password of the credentials matches with the password of the given user
+     * 
+     * @param user Targeted user for the credential validity check
+     * @returns boolean => true = valid
+     */
     public areValid(user: User | null): boolean {
         if (user === null)
             return false;

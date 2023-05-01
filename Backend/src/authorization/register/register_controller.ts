@@ -7,6 +7,17 @@ import bcrypt from 'bcrypt';
 
 export default class RegisterController extends Controller {
 
+    /**
+     * Handles the request and response of the /register route.
+     * Checks if sent register data is correct and valid.
+     * 
+     * If successful:
+     * User gets created in DB.
+     * User gets sent back as a response.
+     * 
+     * @param req :Request (express)
+     * @param res :Response (express)
+     */
     public static async handle(req: Request, res: Response) {
         let user = new UserDTO(req.body);
 
