@@ -2,10 +2,8 @@ import { Request, Response } from 'express';
 import Controller from '../../core/controller';
 import { ErrorCode, StatusCode } from '../../core/codes';
 import Credentials from './model/credentials';
-import Jwt from 'jsonwebtoken';
 import { User } from '@prisma/client';
 import UserService from '../../core/service/user_service';
-import EnvService from '../../core/service/env_service';
 import JWTService from '../../core/service/jwt_service';
 
 export default class LoginController extends Controller {
@@ -46,22 +44,5 @@ export default class LoginController extends Controller {
         // Create and Set JWT Token as Cookie
         JWTService.initTokenAsCookie(user as User, res); // User NULL check by 'credentials.areValid' 
         res.sendStatus(StatusCode.OK);
-    }
-
-    private static createJWTToken(user: User): string {
-        const payLoad = {
-            id: user.user_id,
-            display_name: user.display_name
-        };
-        const options = {
-            expiresIn: `${EnvService.getJwtTTL()}d`
-        };
-        return Jwt.sign(payLoad, EnvService.getJwtSecret(), options);
-    }
-
-    private static createCookieExpirationDate(): Date {
-        const expirationDate = new Date();
-        expirationDate.setDate(expirationDate.getDate() + parseInt(EnvService.getJwtTTL()));
-        return expirationDate;
     }
 }
