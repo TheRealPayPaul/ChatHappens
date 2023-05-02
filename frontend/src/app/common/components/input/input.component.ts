@@ -23,6 +23,7 @@ export class InputComponent implements ControlValueAccessor {
 	@Input() label: string;
 	@Input() errors?: ValidationErrors | null;
 	@Input() infoIconPath?: string;
+	@Input() trimOnBlur = false;
 
 	onTouched: () => void;
 	onChange: (val: any) => void;
@@ -39,6 +40,9 @@ export class InputComponent implements ControlValueAccessor {
 	}
 
 	touched(): void {
+		if (this.trimOnBlur) {
+			this.value = this._value.trim();
+		}
 		this.onTouched();
 	}
 
