@@ -3,10 +3,10 @@ import { StatusCode } from '../codes';
 import Jwt from 'jsonwebtoken';
 import EnvService from '../service/env_service';
 
-export function AuthGuardLoggedIn(req: Request, res: Response, next: NextFunction) {
+export function AuthGuardLoggedIn(req: Request, res: Response, next: NextFunction): void {
     
     if (!req.cookies.jwt) {
-        res.sendStatus(StatusCode.UNAUTHORIZED);
+        res.status(StatusCode.UNAUTHORIZED).send();
         return;
     }
 
@@ -14,6 +14,6 @@ export function AuthGuardLoggedIn(req: Request, res: Response, next: NextFunctio
         Jwt.verify(req.cookies.jwt, EnvService.getJwtSecret());
         next();
     } catch {
-        res.sendStatus(StatusCode.UNAUTHORIZED);
+        res.status(StatusCode.UNAUTHORIZED).send();
     }
 }

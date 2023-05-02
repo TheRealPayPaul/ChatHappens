@@ -1,11 +1,11 @@
 export default class DTOValidator {
     private errors?: string[];
 
-    protected clearErrors() {
+    protected clearErrors(): void {
         this.errors = undefined;
     }
 
-    protected addError(msg: string) {
+    protected addError(msg: string): void {
         if (!this.errors)
             this.errors = [];
         

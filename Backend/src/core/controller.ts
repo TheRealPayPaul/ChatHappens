@@ -9,7 +9,7 @@ interface SendErrorBuilder {
 
 export default class Controller {
 
-    protected static sendError(data: SendErrorBuilder, res: Response) {
+    protected static sendError(data: SendErrorBuilder, res: Response): void {
         res.status(data.StatusCode);
         
         const errors = Array.isArray(data.Message) ? data.Message : [ data.Message ];
