@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
 
-export default class UserDTO {
+export class UserDTO {
     public id?: string;
     public email?: string;
     public display_name?: string;
@@ -19,7 +19,7 @@ export default class UserDTO {
 
     /**
      * Creates a UserDTO from the User object provided by prisma.
-     * 
+     *
      * @param user User from prisma
      * @returns UserDTO
      */
@@ -29,7 +29,7 @@ export default class UserDTO {
             email: user.email,
             display_name: user.display_name,
             profile_picture: user.profile_picture ?? undefined,
-            created_on: user.profile_picture ?? undefined
+            created_on: user.profile_picture ?? undefined,
         });
     }
 }

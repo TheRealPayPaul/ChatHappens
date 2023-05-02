@@ -4,4 +4,5 @@ export const ErrorKeyMap: { [key: string]: string } = {
 	minlength: 'Min length: {}',
 	maxlength: 'Max length: {}',
 	'not-matching': 'Passwords do not match',
+	'email-not-unique': 'Email is already taken',
 };

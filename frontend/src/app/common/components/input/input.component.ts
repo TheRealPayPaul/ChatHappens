@@ -36,7 +36,6 @@ export class InputComponent implements ControlValueAccessor {
 	set value(val: string) {
 		this._value = val;
 		this.onChange(val);
-		this.onTouched();
 	}
 
 	touched(): void {

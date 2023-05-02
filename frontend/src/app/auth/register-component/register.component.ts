@@ -20,6 +20,7 @@ interface FormControlInfo {
 	label: string;
 	validators?: ValidatorFn[];
 	asyncValidators?: AsyncValidatorFn[];
+	updateOn?: string;
 }
 
 @Component({
@@ -45,6 +46,7 @@ export class RegisterComponent {
 				asyncValidators: [
 					this.isEmailUnique(this.authenticationService),
 				],
+				updateOn: 'blur',
 			},
 			{
 				name: 'username',
@@ -71,23 +73,7 @@ export class RegisterComponent {
 		);
 	}
 
-	private getFormGroupConfigFromInfo(
-		formControlsInfo: FormControlInfo[]
-	): any {
-		const result: { [name: string]: any[] } = {};
-		formControlsInfo.forEach((control: FormControlInfo) => {
-			result[control.name] = [
-				'',
-				{
-					validators: control.validators,
-					asyncValidators: control.asyncValidators,
-				},
-			];
-		});
-		return result;
-	}
-
-	register() {
+	register(): void {
 		if (!this.areEnteredPasswordsSame()) {
 			this.form.get('password')?.setErrors({ 'not-matching': true });
 			return;
@@ -121,8 +107,25 @@ export class RegisterComponent {
 		): Observable<ValidationErrors | null> =>
 			authenticationService.isEmailUnique(control.value).pipe(
 				map((isUnique: boolean) => {
-					return isUnique ? null : { 'not-unique': true };
+					return isUnique ? null : { 'email-not-unique': true };
 				})
 			);
+	}
+
+	private getFormGroupConfigFromInfo(
+		formControlsInfo: FormControlInfo[]
+	): any {
+		const result: { [name: string]: any[] } = {};
+		formControlsInfo.forEach((control: FormControlInfo) => {
+			result[control.name] = [
+				'',
+				{
+					validators: control.validators,
+					asyncValidators: control.asyncValidators,
+					updateOn: control.updateOn ?? 'change',
+				},
+			];
+		});
+		return result;
 	}
 }
