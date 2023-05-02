@@ -10,14 +10,14 @@ import { Buffer } from 'buffer';
 export class AuthenticationService {
 	constructor(private httpClient: HttpClient) {}
 
-	login(data: UserDTO): Observable<any> {
+	login(data: UserDTO): Observable<void> {
 		const credentials = `${data.email}:${data.password}`;
 
 		const headers = new HttpHeaders().set(
 			'Authorization',
 			`Basic ${Buffer.from(credentials).toString('base64')}`
 		);
-		return this.httpClient.post('/api/authorization/login', null, {
+		return this.httpClient.post<void>('/api/authorization/login', null, {
 			headers,
 		});
 	}

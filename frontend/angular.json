@@ -28,6 +28,9 @@
 						"stylePreprocessorOptions": {
 							"includePaths": ["./src"]
 						},
+						"allowedCommonJsDependencies": [
+							"buffer"
+						],
 						"scripts": []
 					},
 					"configurations": {

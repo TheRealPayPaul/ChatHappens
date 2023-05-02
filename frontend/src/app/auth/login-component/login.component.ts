@@ -68,7 +68,7 @@ export class LoginComponent {
 		return result;
 	}
 
-	login() {
+	login(): void {
 		this.authenticationService.login(this.form.value).subscribe(() => {
 			this.router.navigateByUrl('/chat');
 		});
