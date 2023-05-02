@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDTO } from './user-dto.model';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Buffer } from 'buffer';
 
@@ -26,7 +26,13 @@ export class AuthenticationService {
 		return this.httpClient.post('/api/authorization/register', data);
 	}
 
-	isEmailUnique(toCheck: string): Observable<boolean> {
-		return of(true);
+	/**
+	 * Check if email is unique.
+	 * @param email email to check.
+	 */
+	isEmailUnique(email: string): Observable<boolean> {
+		return this.httpClient.get<boolean>(
+			`/api/authorization/validate/email-unique?email=${email}`
+		);
 	}
 }
