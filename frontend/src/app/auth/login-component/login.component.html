@@ -1,6 +1,6 @@
 <app-logo></app-logo>
-<app-card title="Register" class="register-form-container">
-	<div [formGroup]="form" class="register-form">
+<app-card title="Login" class="login-form-container">
+	<div [formGroup]="form" class="login-form">
 		<ng-container *ngFor="let control of formControlInfos">
 			<app-input
 				[formControlName]="control.name"
@@ -9,7 +9,7 @@
 				[errors]="form.controls[control.name].errors"
 			></app-input>
 		</ng-container>
-		<button (click)="register()" [disabled]="!form.valid">Register</button>
-		<a routerLink="/login">Login now</a>
+		<button (click)="login()" [disabled]="!form.valid">Login</button>
+		<a routerLink="/register">Register now</a>
 	</div>
 </app-card>

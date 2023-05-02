@@ -28,6 +28,9 @@
 						"stylePreprocessorOptions": {
 							"includePaths": ["./src"]
 						},
+						"allowedCommonJsDependencies": [
+							"buffer"
+						],
 						"scripts": []
 					},
 					"configurations": {
@@ -100,6 +103,9 @@
 		}
 	},
 	"cli": {
-		"schematicCollections": ["@angular-eslint/schematics"]
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ],
+    "analytics": false
 	}
 }
