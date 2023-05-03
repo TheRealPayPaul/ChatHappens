@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("MYSQL_DATABASE_URL")
+}
+
+// MySQL
+
+model Chat {
+    chat_id    String     @id @default(uuid())
+    created_on DateTime   @default(now())
+    name       String     @db.VarChar(45)
+    ChatUser   ChatUser[]
+}
+
+model User {
+    user_id         String     @id @default(uuid())
+    email           String     @unique @db.VarChar(128)
+    display_name    String     @db.VarChar(45)
+    password        String     @db.VarChar(128)
+    profile_picture String?    @db.VarChar(40)
+    created_on      DateTime   @default(now())
+    ChatUser        ChatUser[]
+}
+
+model ChatUser {
+    chat_user_id String @id @default(uuid())
+    chat         Chat   @relation(fields: [chat_id], references: [chat_id])
+    chat_id      String
+    user         User   @relation(fields: [user_id], references: [user_id])
+    user_id      String
+}
+
+// MongoDB (To be added)

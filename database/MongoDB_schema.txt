@@ -1,0 +1,8 @@
+Contains Chat documents like this:
+
+{
+	chat_id: string;
+	user_id: string;
+	timestamp: int;
+	message: string;
+}
