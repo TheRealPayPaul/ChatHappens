@@ -21,6 +21,7 @@ interface FormControlInfo {
 	validators?: ValidatorFn[];
 	asyncValidators?: AsyncValidatorFn[];
 	updateOn?: string;
+	trimOnBlur?: boolean;
 }
 
 @Component({
@@ -42,23 +43,33 @@ export class RegisterComponent {
 				name: 'email',
 				inputType: InputType.EMAIL,
 				label: 'Email',
-				validators: [Validators.required, Validators.email],
+				validators: [
+					Validators.required,
+					Validators.email,
+					Validators.maxLength(128),
+				],
 				asyncValidators: [
 					this.isEmailUnique(this.authenticationService),
 				],
 				updateOn: 'blur',
+				trimOnBlur: true,
 			},
 			{
 				name: 'username',
 				inputType: InputType.TEXT,
 				label: 'Username',
-				validators: [Validators.required],
+				validators: [Validators.required, Validators.maxLength(45)],
+				trimOnBlur: true,
 			},
 			{
 				name: 'password',
 				inputType: InputType.PASSWORD,
 				label: 'Password',
-				validators: [Validators.required],
+				validators: [
+					Validators.required,
+					Validators.minLength(8),
+					this.doesPasswordMatchPattern(),
+				],
 			},
 			{
 				name: 'repeatPassword',
@@ -110,6 +121,14 @@ export class RegisterComponent {
 					return isUnique ? null : { 'email-not-unique': true };
 				})
 			);
+	}
+
+	doesPasswordMatchPattern(): ValidatorFn {
+		return (control: AbstractControl): ValidationErrors | null => {
+			return !new RegExp(/\s/g).test(control.value)
+				? null
+				: { 'password-contains-whitespace': true };
+		};
 	}
 
 	private getFormGroupConfigFromInfo(

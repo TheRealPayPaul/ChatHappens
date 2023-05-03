@@ -7,6 +7,7 @@
 				[type]="control.inputType"
 				[label]="control.label"
 				[errors]="form.controls[control.name].errors"
+				[trimOnBlur]="control.trimOnBlur ?? false"
 			></app-input>
 		</ng-container>
 		<button (click)="register()" [disabled]="!form.valid">Register</button>
