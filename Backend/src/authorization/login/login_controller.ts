@@ -48,6 +48,6 @@ export default class LoginController extends Controller {
 
         // Create and Set JWT Token as Cookie
         JWTService.initTokenAsCookie(user as User, res); // User NULL check by 'credentials.areValid'
-        res.sendStatus(StatusCode.OK);
+        res.status(StatusCode.OK).send();
     }
 }

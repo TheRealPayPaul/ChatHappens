@@ -7,6 +7,8 @@ datasource db {
     url      = env("MYSQL_DATABASE_URL")
 }
 
+// MySQL
+
 model Chat {
     chat_id    String     @id @default(uuid())
     created_on DateTime   @default(now())
@@ -31,3 +33,5 @@ model ChatUser {
     user         User   @relation(fields: [user_id], references: [user_id])
     user_id      String
 }
+
+// MongoDB (To be added)

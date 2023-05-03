@@ -11,7 +11,7 @@ export class UserDTO {
     public constructor(data: Partial<UserDTO>) {
         this.id = data.id;
         this.email = data.email;
-        this.display_name = data.display_name;
+        this.display_name = data.display_name?.trim();
         this.password = data.password;
         this.profile_picture = data.profile_picture;
         this.created_on = data.created_on;
