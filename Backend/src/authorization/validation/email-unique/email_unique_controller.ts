@@ -12,7 +12,6 @@ export class EmailUniqueController extends Controller {
      * @param res :Response (express)
      */
     public static async handle(req: Request, res: Response): Promise<void> {
-        console.log(req.query.email);
         if (!(typeof req.query.email == 'string') || !req.query.email) {
             this.sendError(
                 {
