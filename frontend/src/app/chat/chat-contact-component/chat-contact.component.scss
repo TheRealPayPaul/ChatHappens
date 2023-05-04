@@ -1,0 +1,12 @@
+@import 'variables';
+
+.wrapper {
+    margin: 5px 15px;
+    border-radius: 5px;
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+.wrapper:hover {
+    background-color: $color-fill-highlight;
+}

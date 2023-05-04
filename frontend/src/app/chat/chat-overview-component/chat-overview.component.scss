@@ -1,0 +1,70 @@
+@import 'variables';
+
+$sidebar-width: 480px;
+
+:host {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+}
+
+.headerbar {
+	background-color: $color-fill-lowlight;
+	height: 100px;
+	display: flex;
+	flex-shrink: 0;
+
+	.headerbar-space {
+		height: 100%;
+	}
+
+	.sidebar-space {
+		width: $sidebar-width;
+		flex-shrink: 0;
+	}
+
+	.chat-space {
+		flex-grow: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.logout {
+	display: flex;
+	margin-right: 25px;
+	align-items: center;
+	font-size: 1.5rem;
+	color: $color-dark-text;
+	cursor: pointer;
+	user-select: none;
+
+	.logout-text {
+		margin-right: 16px;
+		transform: translateY(2px);
+	}
+
+	.material-symbols-rounded {
+		color: $color-grey-text;
+		font-size: 40px;
+	}
+}
+
+.main {
+	display: flex;
+	flex-grow: 1;
+	min-height: 0; // Bei Gott keine Ahnung wieso, aber das ist wichtig!
+}
+
+.sidebar {
+	height: 100%;
+	width: $sidebar-width;
+	background-color: $color-fill;
+	flex-shrink: 0;
+}
+
+.chat {
+	flex-grow: 1;
+}

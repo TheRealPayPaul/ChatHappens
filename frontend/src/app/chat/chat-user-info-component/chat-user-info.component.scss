@@ -1,0 +1,18 @@
+@import 'variables';
+
+.user {
+	display: flex;
+}
+
+.data {
+	display: flex;
+	flex-direction: column;
+	margin-top: 24px;
+	margin-left: 15px;
+}
+
+.name {
+	font-size: 32px;
+	line-height: 0.5;
+	color: $color-text;
+}
