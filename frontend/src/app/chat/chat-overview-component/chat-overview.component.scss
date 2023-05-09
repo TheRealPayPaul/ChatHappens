@@ -1,6 +1,6 @@
 @import 'variables';
 
-$sidebar-width: 480px;
+$sidebar-width: 360px;
 
 :host {
 	display: flex;
@@ -11,9 +11,11 @@ $sidebar-width: 480px;
 
 .headerbar {
 	background-color: $color-fill-lowlight;
-	height: 100px;
+	height: 75px;
 	display: flex;
 	flex-shrink: 0;
+	z-index: 1; // Or else the shadow would not be over the sidebar
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 8px;
 
 	.headerbar-space {
 		height: 100%;
@@ -34,21 +36,21 @@ $sidebar-width: 480px;
 
 .logout {
 	display: flex;
-	margin-right: 25px;
+	margin-right: 18px;
 	align-items: center;
-	font-size: 1.5rem;
+	font-size: 1.125rem;
 	color: $color-dark-text;
 	cursor: pointer;
 	user-select: none;
 
 	.logout-text {
-		margin-right: 16px;
-		transform: translateY(2px);
+		margin-right: 12px;
+		transform: translateY(3px);
 	}
 
 	.material-symbols-rounded {
 		color: $color-grey-text;
-		font-size: 40px;
+		font-size: 30px;
 	}
 }
 

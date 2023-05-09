@@ -19,6 +19,7 @@ import { UserStatusComponent } from './common/components/user-status/user-status
 import { ProfilePictureComponent } from './common/components/profile-picture/profile-picture.component';
 import { ChatUserInfoComponent } from './chat/chat-user-info-component/chat-user-info.component';
 import { ChatContactComponent } from './chat/chat-contact-component/chat-contact.component';
+import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-input-bar.component';
 
 @NgModule({
 	declarations: [
@@ -37,6 +38,7 @@ import { ChatContactComponent } from './chat/chat-contact-component/chat-contact
 		ProfilePictureComponent,
 		ChatUserInfoComponent,
 		ChatContactComponent,
+		ChatInputBarComponent,
 	],
 	imports: [
 		BrowserModule,
