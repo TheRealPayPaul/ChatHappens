@@ -1,8 +1,15 @@
 import { User } from '@prisma/client';
 import { Service } from './service';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import EnvService from './env_service';
 import Jwt from 'jsonwebtoken';
+
+export interface TokenData {
+    id: string;
+    display_name: string;
+    iat: number;
+    exp: number;
+}
 
 export default class JWTService extends Service {
     public static initTokenAsCookie(user: User, res: Response): void {
@@ -10,6 +17,15 @@ export default class JWTService extends Service {
         const expires = this.createCookieExpirationDate();
 
         res.cookie('auth', jwtToken, { expires });
+    }
+
+    public static getTokenData(req: Request): TokenData | null {
+        const encodedUserData: string | null =
+            /^\S+\.(.+)\.\S+$/g.exec(req.cookies.auth)?.[1] ?? null;
+
+        return encodedUserData
+            ? JSON.parse(Buffer.from(encodedUserData, 'base64').toString())
+            : null;
     }
 
     private static createJWTToken(user: User): string {

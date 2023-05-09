@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 // import { Server } from 'socket.io';
 import authorization_router from './authorization/router';
 import app_router from './app/router';
+import { loggedIn } from './core/guard/auth_guard';
 
 const app = express();
 const server = http.createServer(app);
@@ -18,6 +19,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/authorization', authorization_router);
-app.use('/api/app', app_router);
+app.use('/api/app', loggedIn, app_router);
 
 export { server };
