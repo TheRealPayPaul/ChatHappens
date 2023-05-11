@@ -21,6 +21,7 @@ import { ChatUserInfoComponent } from './chat/chat-user-info-component/chat-user
 import { ChatContactComponent } from './chat/chat-contact-component/chat-contact.component';
 import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-input-bar.component';
 import { GithubComponent } from './common/components/github/github.component';
+import { FormErrorBoxComponent } from './common/components/form-error-box/form-error-box.component';
 
 @NgModule({
 	declarations: [
@@ -41,6 +42,7 @@ import { GithubComponent } from './common/components/github/github.component';
 		ChatContactComponent,
 		ChatInputBarComponent,
 		GithubComponent,
+		FormErrorBoxComponent,
 	],
 	imports: [
 		BrowserModule,

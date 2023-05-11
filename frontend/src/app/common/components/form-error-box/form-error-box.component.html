@@ -1,0 +1,10 @@
+<div class="form-error-box" *ngIf="form.errors">
+	<span
+		*ngFor="let error of form.errors | keyvalue"
+		class="error"
+		appErrorMessage
+		[key]="error.key"
+		[params]="error.value | toStringArray"
+	>
+	</span>
+</div>
