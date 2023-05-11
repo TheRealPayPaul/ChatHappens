@@ -1,5 +1,15 @@
 <app-logo></app-logo>
 <app-card title="Login" class="login-form-container">
+	<div class="form-error-box" *ngIf="form.errors">
+		<span
+			*ngFor="let error of form.errors | keyvalue"
+			class="error"
+			appErrorMessage
+			[key]="error.key"
+			[params]="error.value | toStringArray"
+		>
+		</span>
+	</div>
 	<div [formGroup]="form" class="login-form">
 		<ng-container *ngFor="let control of formControlInfos">
 			<app-input
