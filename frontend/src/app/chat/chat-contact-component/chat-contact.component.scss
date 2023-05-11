@@ -1,0 +1,17 @@
+@import 'variables';
+
+:host[selected] .wrapper {
+    background-color: $color-fill-highlight;
+}
+
+.wrapper {
+    margin: 2px 15px;
+    border-radius: 5px;
+    padding: 8px 20px;
+    cursor: pointer;
+    overflow-x: hidden;
+}
+
+.wrapper:hover {
+    background-color: #2B2E41 !important;
+}

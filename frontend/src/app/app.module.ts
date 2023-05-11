@@ -12,6 +12,14 @@ import { ErrorMessageDirective } from './common/directives/error-message/error-m
 import { ToStringArrayPipe } from './common/pipes/to-string-array.pipe';
 import { LoginComponent } from './auth/login-component/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ChatOverviewComponent } from './chat/chat-overview-component/chat-overview.component';
+import { ChatComponent } from './chat/chat-component/chat.component';
+import { ChatSidebarComponent } from './chat/chat-sidebar-component/chat-sidebar.component';
+import { UserStatusComponent } from './common/components/user-status/user-status.component';
+import { ProfilePictureComponent } from './common/components/profile-picture/profile-picture.component';
+import { ChatUserInfoComponent } from './chat/chat-user-info-component/chat-user-info.component';
+import { ChatContactComponent } from './chat/chat-contact-component/chat-contact.component';
+import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-input-bar.component';
 
 @NgModule({
 	declarations: [
@@ -23,6 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
 		ErrorMessageDirective,
 		ToStringArrayPipe,
 		LoginComponent,
+		ChatOverviewComponent,
+		ChatComponent,
+		ChatSidebarComponent,
+		UserStatusComponent,
+		ProfilePictureComponent,
+		ChatUserInfoComponent,
+		ChatContactComponent,
+		ChatInputBarComponent,
 	],
 	imports: [
 		BrowserModule,

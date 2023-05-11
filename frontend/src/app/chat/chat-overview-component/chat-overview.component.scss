@@ -1,0 +1,78 @@
+@import 'variables';
+
+$sidebar-width: 360px;
+
+:host {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+}
+
+.headerbar {
+	background-color: $color-fill-lowlight;
+	height: 75px;
+	display: flex;
+	flex-shrink: 0;
+	z-index: 1; // Or else the shadow would not be over the sidebar
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 8px;
+
+	.headerbar-space {
+		height: 100%;
+	}
+
+	.sidebar-space {
+		width: $sidebar-width;
+		flex-shrink: 0;
+	}
+
+	.chat-space {
+		flex-grow: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.user-info {
+	flex-grow: 1;
+	margin-right: 50px;
+}
+
+.logout {
+	flex-shrink: 0;
+	display: flex;
+	margin-right: 18px;
+	align-items: center;
+	font-size: 1.125rem;
+	color: $color-dark-text;
+	cursor: pointer;
+	user-select: none;
+
+	.logout-text {
+		margin-right: 12px;
+		transform: translateY(3px);
+	}
+
+	.material-symbols-rounded {
+		color: $color-grey-text;
+		font-size: 30px;
+	}
+}
+
+.main {
+	display: flex;
+	flex-grow: 1;
+	min-height: 0; // Bei Gott keine Ahnung wieso, aber das ist wichtig!
+}
+
+.sidebar {
+	height: 100%;
+	width: $sidebar-width;
+	background-color: $color-fill;
+	flex-shrink: 0;
+}
+
+.chat {
+	flex-grow: 1;
+}
