@@ -1,16 +1,18 @@
 :host {
+    height: 7rem;
     display: flex;
     align-items: center;
+    font-size: 3rem;
 }
 
-object {
-    height: 7rem;
+img {
+    height: 100%;
     width: auto;
 }
-.small {
 
-}
 h1 {
+    transform: translateY(.05em);
+    margin-left: .175em;
     font-weight: normal;
-    font-size: 3rem;
+    font-size: 1em;
 }
