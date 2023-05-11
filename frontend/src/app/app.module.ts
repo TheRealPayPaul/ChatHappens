@@ -11,7 +11,7 @@ import { LogoComponent } from './common/components/logo/logo.component';
 import { ErrorMessageDirective } from './common/directives/error-message/error-message.directive';
 import { ToStringArrayPipe } from './common/pipes/to-string-array.pipe';
 import { LoginComponent } from './auth/login-component/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ChatOverviewComponent } from './chat/chat-overview-component/chat-overview.component';
 import { ChatComponent } from './chat/chat-component/chat.component';
 import { ChatSidebarComponent } from './chat/chat-sidebar-component/chat-sidebar.component';
@@ -21,6 +21,7 @@ import { ChatUserInfoComponent } from './chat/chat-user-info-component/chat-user
 import { ChatContactComponent } from './chat/chat-contact-component/chat-contact.component';
 import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-input-bar.component';
 import { GithubComponent } from './common/components/github/github.component';
+import { ErrorInterceptor } from './common/interceptors/error.interceptor';
 
 @NgModule({
 	declarations: [
@@ -49,7 +50,9 @@ import { GithubComponent } from './common/components/github/github.component';
 		ReactiveFormsModule,
 		HttpClientModule,
 	],
-	providers: [],
+	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
