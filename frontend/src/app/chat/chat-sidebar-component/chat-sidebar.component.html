@@ -1,5 +1,5 @@
 <div class="contacts">
-	<app-chat-contact></app-chat-contact>
+	<app-chat-contact selected></app-chat-contact>
 	<app-chat-contact></app-chat-contact>
 	<app-chat-contact></app-chat-contact>
 	<app-chat-contact></app-chat-contact>
@@ -19,7 +19,11 @@
 		<span>Paul</span>
 	</div>
 	<div class="actions">
-		<span class="material-symbols-rounded">person_add_alt</span>
-		<span class="material-symbols-rounded">settings</span>
+		<span class="material-symbols-rounded" (click)="clickAddFriend()">
+			person_add_alt
+		</span>
+		<span class="material-symbols-rounded" (click)="clickSettings()">
+			settings
+		</span>
 	</div>
 </div>

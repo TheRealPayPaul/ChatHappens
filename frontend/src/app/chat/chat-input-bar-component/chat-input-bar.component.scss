@@ -3,48 +3,64 @@
 $bar-height: 66px;
 
 :host {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: $bar-height;
-    margin: 0 15px;
-    background-color: $color-fill;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 8px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: $bar-height;
+	margin: 0 15px;
+	background-color: $color-fill;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 8px;
 }
 
 .input {
-    flex-grow: 1;
+	flex-grow: 1;
 
-    input {
-        font-size: 18px;
-        width: 100%;
-        min-height: $bar-height;
-        background: none;
-        border: none;
-        color: $color-text;
-    }
+	input {
+		font-size: 18px;
+		width: 100%;
+		min-height: $bar-height;
+		background: none;
+		border: none;
+		color: $color-text;
+	}
 
-    input:focus {
-        outline: none;
-    }
+	input:focus {
+		outline: none;
+	}
 }
 
 .action {
-    flex-shrink: 0;
-    margin: 0 10px;
+	flex-shrink: 0;
+	margin: 0 10px;
 }
 
 .material-symbols-rounded {
-    font-size: 45px;
-    color: $color-dark-text;
-    transform: translateY(4px);
-    cursor: pointer;
-    user-select: none;
-    
+	font-size: 42px;
+	color: $color-dark-text;
+    transform-origin: 50% calc(50% + 4px);
+	transform: translateY(4px);
+	cursor: pointer;
+	user-select: none;
+}
+
+.material-symbols-rounded:hover {
+    animation: nod .5s;
+}
+
+@keyframes nod {
+	0% {
+        transform: translateY(4px);
+    }
+    30% {
+        transform: rotateZ(-20deg) translateY(4px);
+    }
+	100% {
+		transform: rotateZ(0deg) translateY(4px);
+	}
 }
 
 .send-icon {
-    color: $color-grey-text;
-    margin-left: 8px;
+	color: $color-grey-text;
+	margin-left: 8px;
 }

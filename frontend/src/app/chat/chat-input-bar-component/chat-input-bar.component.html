@@ -1,10 +1,16 @@
 <div class="action action-left">
-	<span class="material-symbols-rounded">add_circle</span>
+	<span class="material-symbols-rounded" (click)="clickImport()">
+		add_circle
+	</span>
 </div>
 <div class="input">
 	<input type="text" placeholder="Message to Tobias..." />
 </div>
 <div class="action action-right">
-	<span class="material-symbols-rounded">insert_emoticon</span>
-	<span class="material-symbols-rounded send-icon">send</span>
+	<span class="material-symbols-rounded" (click)="clickEmoticon()">
+		insert_emoticon
+	</span>
+	<span class="material-symbols-rounded send-icon" (click)="clickSend()">
+		send
+	</span>
 </div>

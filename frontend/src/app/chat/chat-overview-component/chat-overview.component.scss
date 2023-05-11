@@ -34,7 +34,13 @@ $sidebar-width: 360px;
 	}
 }
 
+.user-info {
+	flex-grow: 1;
+	margin-right: 50px;
+}
+
 .logout {
+	flex-shrink: 0;
 	display: flex;
 	margin-right: 18px;
 	align-items: center;

@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
 	templateUrl: './chat-overview.component.html',
 	styleUrls: ['./chat-overview.component.scss'],
 })
-export class ChatOverviewComponent {}
+export class ChatOverviewComponent {
+	clickLogout(): void {
+		console.log('[ChatOverview] Clicked Logout');
+	}
+}
