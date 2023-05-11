@@ -20,6 +20,7 @@ import { ProfilePictureComponent } from './common/components/profile-picture/pro
 import { ChatUserInfoComponent } from './chat/chat-user-info-component/chat-user-info.component';
 import { ChatContactComponent } from './chat/chat-contact-component/chat-contact.component';
 import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-input-bar.component';
+import { GithubComponent } from './common/components/github/github.component';
 
 @NgModule({
 	declarations: [
@@ -39,6 +40,7 @@ import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-inpu
 		ChatUserInfoComponent,
 		ChatContactComponent,
 		ChatInputBarComponent,
+		GithubComponent,
 	],
 	imports: [
 		BrowserModule,
