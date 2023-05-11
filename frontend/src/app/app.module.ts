@@ -22,6 +22,7 @@ import { ChatContactComponent } from './chat/chat-contact-component/chat-contact
 import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-input-bar.component';
 import { GithubComponent } from './common/components/github/github.component';
 import { ErrorInterceptor } from './common/interceptors/error.interceptor';
+import { FormErrorBoxComponent } from './common/components/form-error-box/form-error-box.component';
 
 @NgModule({
 	declarations: [
@@ -42,6 +43,7 @@ import { ErrorInterceptor } from './common/interceptors/error.interceptor';
 		ChatContactComponent,
 		ChatInputBarComponent,
 		GithubComponent,
+		FormErrorBoxComponent,
 	],
 	imports: [
 		BrowserModule,
