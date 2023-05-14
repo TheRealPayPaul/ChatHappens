@@ -18,6 +18,16 @@ export class UserService extends Service {
         });
     }
 
+    public static async exists(id: string): Promise<boolean> {
+        return (
+            (await client.user.count({
+                where: {
+                    user_id: id,
+                },
+            })) > 0
+        );
+    }
+
     public static async emailExists(email: string): Promise<boolean> {
         const count = await client.user.count({
             where: {

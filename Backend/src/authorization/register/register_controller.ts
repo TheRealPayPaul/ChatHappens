@@ -59,7 +59,7 @@ export default class RegisterController extends Controller {
 
         // Create and Set JWT Token as Cookie
         JWTService.initTokenAsCookie(newUser, res);
-        res.status(StatusCode.OK).json(UserDTO.createFromDB(newUser));
+        res.status(StatusCode.OK).json(UserDTO.toDTO(newUser));
     }
 
     private static createPasswordHash(password: string): string {

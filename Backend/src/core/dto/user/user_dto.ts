@@ -23,7 +23,7 @@ export class UserDTO {
      * @param user User from prisma
      * @returns UserDTO
      */
-    public static createFromDB(user: User): UserDTO {
+    public static toDTO(user: User): UserDTO {
         return new UserDTO({
             id: user.user_id,
             email: user.email,
