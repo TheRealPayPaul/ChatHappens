@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ErrorKeyMap } from './error-Key-map';
+import { ErrorKeyMap } from './error-key-map';
 
 @Injectable({
 	providedIn: 'root',

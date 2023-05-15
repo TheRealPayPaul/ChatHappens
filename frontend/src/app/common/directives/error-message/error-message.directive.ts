@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
-import { ErrorMessageService } from '../../services/error-message.service';
+import { ErrorMessageService } from '../../services/error-message-service/error-message.service';
 
 @Directive({
 	selector: '[appErrorMessage]',

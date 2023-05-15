@@ -1,0 +1,28 @@
+@import 'variables';
+
+.modal-background {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	backdrop-filter: blur(10px);
+	z-index: 999;
+}
+
+.modal-content {
+	position: absolute;
+	height: 0;
+	width: 0;
+	top: 0;
+	background: $color-fill;
+	z-index: -1;
+
+	&.open {
+		padding: 30px;
+		top: 5%;
+		left: 5%;
+		width: 90%;
+		height: auto;
+		z-index: 1000;
+	}
+}
