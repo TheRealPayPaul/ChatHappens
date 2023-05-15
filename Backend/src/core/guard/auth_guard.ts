@@ -3,7 +3,7 @@ import { StatusCode } from '../codes';
 import Jwt from 'jsonwebtoken';
 import EnvService from '../service/env_service';
 
-export function AuthGuardLoggedIn(
+export function loggedIn(
     req: Request,
     res: Response,
     next: NextFunction
