@@ -1,1 +1,6 @@
 <router-outlet></router-outlet>
+
+<div *ngIf="isModalOpen" class="modal-background" (click)="closeModal()"></div>
+<div class="modal-content" [class.open]="isModalOpen">
+	<ng-container #modalContent></ng-container>
+</div>
