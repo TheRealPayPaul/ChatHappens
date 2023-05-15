@@ -9,6 +9,7 @@ import {
 import { InputType } from 'src/app/common/components/input/input-type.enum';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface FormControlInfo {
 	name: string;
@@ -69,8 +70,15 @@ export class LoginComponent {
 	}
 
 	login(): void {
-		this.authenticationService.login(this.form.value).subscribe(() => {
-			this.router.navigateByUrl('/chat');
+		this.authenticationService.login(this.form.value).subscribe({
+			next: () => {
+				this.router.navigateByUrl('/chat');
+			},
+			error: (err: HttpErrorResponse) => {
+				if (err.status === 401) {
+					this.form.setErrors({ 'credentials-invalid': true });
+				}
+			},
 		});
 	}
 }
