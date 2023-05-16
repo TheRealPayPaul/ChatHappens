@@ -1,13 +1,19 @@
 <div class="display-user">
-	<div *ngFor="let user of users" class="user">
+	<div *ngFor="let friendRequest of friendRequests" class="user">
 		<app-user-info
-			[id]="user.id"
-			[name]="user.display_name"
+			[id]="friendRequest.from.id"
+			[name]="friendRequest.from.display_name"
 		></app-user-info>
-		<span class="material-symbols-rounded" (click)="acceptUser(user.id)">
+		<span
+			class="material-symbols-rounded"
+			(click)="acceptFriendRequest(friendRequest.id)"
+		>
 			check
 		</span>
-		<span class="material-symbols-rounded" (click)="declineUser(user.id)">
+		<span
+			class="material-symbols-rounded"
+			(click)="declineFriendRequest(friendRequest.id)"
+		>
 			close
 		</span>
 	</div>

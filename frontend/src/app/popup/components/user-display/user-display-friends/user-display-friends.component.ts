@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { UserDTO } from 'src/app/common/dtos/user-dto.model';
+import { FriendService } from '../../../../common/services/friend-service/friend.service';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-user-display-friends',
@@ -12,7 +14,13 @@ import { UserDTO } from 'src/app/common/dtos/user-dto.model';
 export class UserDisplayFriendsComponent {
 	@Input() users: UserDTO[];
 
-	removeUser(userId?: string): void {
-		console.log(`[UserDisplayFriendsComponent] Remove user ${userId}`);
+	@Output() removedFriend: Subject<void> = new Subject<void>();
+
+	constructor(private friendService: FriendService) {}
+
+	removeUser(userId: string): void {
+		this.friendService
+			.deleteFriend(userId)
+			.subscribe(() => this.removedFriend.next());
 	}
 }

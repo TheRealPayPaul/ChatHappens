@@ -5,23 +5,39 @@
 
 <div class="content">
 	<div class="search">
-		<app-input label="Search friend" [(ngModel)]="searchValue"></app-input>
+		<app-input
+			label="Search friend"
+			[(ngModel)]="searchValue"
+			(ngModelChange)="searchValueChanged()"
+		></app-input>
 		<button (click)="clearSearchValue()">Clear</button>
 	</div>
 
 	<ng-container *ngIf="!searchValue">
 		<app-separator
-			*ngIf="data.length > 0"
+			*ngIf="receivedFriendRequests.length > 0"
 			title="Pending Requests"
 		></app-separator>
-		<app-user-display-requests [users]="data"></app-user-display-requests>
+		<app-user-display-requests
+			[friendRequests]="receivedFriendRequests"
+			(friendRequestAccepted)="
+				fetchReceivedFriendRequests(); fetchFriends()
+			"
+			(friendRequestDeclined)="fetchReceivedFriendRequests()"
+		></app-user-display-requests>
 
 		<app-separator title="Friends"></app-separator>
-		<app-user-display-friends [users]="data"></app-user-display-friends>
+		<app-user-display-friends
+			[users]="friends"
+			(removedFriend)="fetchFriends()"
+		></app-user-display-friends>
 	</ng-container>
 
 	<ng-container *ngIf="searchValue">
 		<app-separator title="Search result"></app-separator>
-		<app-user-display-search [users]="data"></app-user-display-search>
+		<app-user-display-search
+			[users]="searchResults"
+			(friendRequestSent)="clearSearchValue()"
+		></app-user-display-search>
 	</ng-container>
 </div>

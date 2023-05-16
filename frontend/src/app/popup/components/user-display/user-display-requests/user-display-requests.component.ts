@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { UserDTO } from 'src/app/common/dtos/user-dto.model';
+import { Component, Input, Output } from '@angular/core';
+import { FriendRequestDTO } from '../../../../common/services/friend-request-dto.model';
+import { FriendRequestService } from '../../../../common/services/friend-request-service/friend-request.service';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-user-display-requests',
@@ -10,13 +12,26 @@ import { UserDTO } from 'src/app/common/dtos/user-dto.model';
 	],
 })
 export class UserDisplayRequestsComponent {
-	@Input() users: UserDTO[];
+	@Input() friendRequests: FriendRequestDTO[];
 
-	acceptUser(userId?: string): void {
-		console.log(`[UserDisplayRequestsComponent] Accept user ${userId}`);
+	@Output() friendRequestAccepted: Subject<void> = new Subject<void>();
+	@Output() friendRequestDeclined: Subject<void> = new Subject<void>();
+
+	constructor(private friendRequestService: FriendRequestService) {}
+
+	acceptFriendRequest(friendRequestId: string): void {
+		this.friendRequestService
+			.acceptFriendRequest(friendRequestId)
+			.subscribe(() => {
+				this.friendRequestAccepted.next();
+			});
 	}
 
-	declineUser(userId?: string): void {
-		console.log(`[UserDisplayRequestsComponent] Decline user ${userId}`);
+	declineFriendRequest(friendRequestId: string): void {
+		this.friendRequestService
+			.declineFriendRequest(friendRequestId)
+			.subscribe(() => {
+				this.friendRequestDeclined.next();
+			});
 	}
 }
