@@ -1,6 +1,6 @@
 import Controller from '../../../core/controller';
 import { Request, Response } from 'express';
-import { ErrorCode, StatusCode } from '../../../core/codes';
+import { StatusCode } from '../../../core/codes';
 import { FriendRequestService } from './friend_request_service';
 import { CurrentUserService } from '../../../core/service/current-user-service';
 import { UserService } from '../../../core/service/user_service';
@@ -19,14 +19,7 @@ export class FriendRequestController extends Controller {
         }
 
         if (!(await UserService.exists(receiverId))) {
-            this.sendError(
-                {
-                    Message: 'Receiver not found',
-                    StatusCode: StatusCode.BAD_REQUEST,
-                    ErrorCode: ErrorCode.SENT_DATA_INVALID,
-                },
-                res
-            );
+            this.sendBadRequestError('Receiver not found', res);
             return;
         }
 
@@ -36,14 +29,7 @@ export class FriendRequestController extends Controller {
         }
 
         if (senderId === receiverId) {
-            this.sendError(
-                {
-                    Message: 'Sender cannot be receiver',
-                    StatusCode: StatusCode.BAD_REQUEST,
-                    ErrorCode: ErrorCode.SENT_DATA_INVALID,
-                },
-                res
-            );
+            this.sendBadRequestError('Sender cannot be receiver', res);
             return;
         }
 
@@ -53,14 +39,7 @@ export class FriendRequestController extends Controller {
                 receiverId
             )
         ) {
-            this.sendError(
-                {
-                    Message: 'Friend request already exists',
-                    StatusCode: StatusCode.BAD_REQUEST,
-                    ErrorCode: ErrorCode.SENT_DATA_INVALID,
-                },
-                res
-            );
+            this.sendBadRequestError('Friend request already exists', res);
             return;
         }
 
@@ -83,14 +62,7 @@ export class FriendRequestController extends Controller {
         }
 
         if (!(await FriendRequestService.exists(friendRequestId))) {
-            this.sendError(
-                {
-                    Message: 'Friend request not found',
-                    StatusCode: StatusCode.BAD_REQUEST,
-                    ErrorCode: ErrorCode.SENT_DATA_INVALID,
-                },
-                res
-            );
+            this.sendBadRequestError('Friend request not found', res);
             return;
         }
 
