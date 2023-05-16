@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { UserDTO } from 'src/app/common/dtos/user-dto.model';
+import { FriendRequestService } from '../../../../common/services/friend-request-service/friend-request.service';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-user-display-search',
@@ -12,7 +14,13 @@ import { UserDTO } from 'src/app/common/dtos/user-dto.model';
 export class UserDisplaySearchComponent {
 	@Input() users: UserDTO[];
 
-	requestUser(userId?: string): void {
-		console.log(`[UserDisplaySearchComponent] Request user ${userId}`);
+	@Output() friendRequestSent: Subject<void> = new Subject<void>();
+
+	constructor(private friendRequestService: FriendRequestService) {}
+
+	sendFriendRequest(userId: string): void {
+		this.friendRequestService
+			.sendFriendRequest(userId)
+			.subscribe(() => this.friendRequestSent.next());
 	}
 }
