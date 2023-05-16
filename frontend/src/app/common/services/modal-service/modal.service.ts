@@ -23,7 +23,7 @@ export class ModalService {
 
 	open(type: Type<any>): void {
 		if (this._modalRef) {
-			this._modalRef.destroy();
+			this.close();
 		}
 
 		this._modalRef = this._modalContentContainer.createComponent(type);

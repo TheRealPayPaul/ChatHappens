@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalService } from 'src/app/common/services/modal-service/modal.service';
+import { PopupFriendsComponent } from 'src/app/popup/popup-friends/popup-friends.component';
 
 @Component({
 	selector: 'app-chat-sidebar',
@@ -6,10 +8,12 @@ import { Component } from '@angular/core';
 	styleUrls: ['./chat-sidebar.component.scss'],
 })
 export class ChatSidebarComponent {
-	clickAddFriend(): void {
-		console.log('[ChatSidebar] Clicked AddFriend');
-	}
+	constructor(private modalService: ModalService) {}
+
 	clickSettings(): void {
 		console.log('[ChatSidebar] Clicked Settings');
+	}
+	openFriendsPopup(): void {
+		this.modalService.open(PopupFriendsComponent);
 	}
 }

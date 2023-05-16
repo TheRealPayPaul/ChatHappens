@@ -11,7 +11,7 @@ import {
 import { AuthenticationService } from '../authentication.service';
 import { map, Observable } from 'rxjs';
 import { InputType } from '../../common/components/input/input-type.enum';
-import { UserDTO } from '../user-dto.model';
+import { RegisterDTO } from '../register-dto.model';
 import { Router } from '@angular/router';
 
 interface FormControlInfo {
@@ -92,7 +92,7 @@ export class RegisterComponent {
 
 		this.authenticationService
 			.register(
-				new UserDTO({
+				new RegisterDTO({
 					email: this.form.get('email')?.value,
 					display_name: this.form.get('username')?.value,
 					password: this.form.get('password')?.value,
