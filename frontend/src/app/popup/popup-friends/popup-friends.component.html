@@ -10,15 +10,18 @@
 	</div>
 
 	<ng-container *ngIf="!searchValue">
-		<app-separator>Pending Requests ({{ data.length }})</app-separator>
+		<app-separator
+			*ngIf="data.length > 0"
+			title="Pending Requests"
+		></app-separator>
 		<app-user-display-requests [users]="data"></app-user-display-requests>
 
-		<app-separator>Friends</app-separator>
+		<app-separator title="Friends"></app-separator>
 		<app-user-display-friends [users]="data"></app-user-display-friends>
 	</ng-container>
 
 	<ng-container *ngIf="searchValue">
-		<app-separator>Search result</app-separator>
+		<app-separator title="Search result"></app-separator>
 		<app-user-display-search [users]="data"></app-user-display-search>
 	</ng-container>
 </div>

@@ -10,8 +10,8 @@ import { Buffer } from 'buffer';
 export class AuthenticationService {
 	constructor(private httpClient: HttpClient) {}
 
-	login(data: RegisterDTO): Observable<void> {
-		const credentials = `${data.email}:${data.password}`;
+	login(email: string, password: string): Observable<void> {
+		const credentials = `${email}:${password}`;
 
 		const headers = new HttpHeaders().set(
 			'Authorization',

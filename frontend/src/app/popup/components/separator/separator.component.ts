@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-separator',
 	templateUrl: './separator.component.html',
 	styleUrls: ['./separator.component.scss'],
 })
-export class SeparatorComponent {}
+export class SeparatorComponent {
+	@Input() title: string;
+}

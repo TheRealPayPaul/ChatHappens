@@ -70,15 +70,17 @@ export class LoginComponent {
 	}
 
 	login(): void {
-		this.authenticationService.login(this.form.value).subscribe({
-			next: () => {
-				this.router.navigateByUrl('/chat');
-			},
-			error: (err: HttpErrorResponse) => {
-				if (err.status === 401) {
-					this.form.setErrors({ 'credentials-invalid': true });
-				}
-			},
-		});
+		this.authenticationService
+			.login(this.form.value.email, this.form.value.password)
+			.subscribe({
+				next: () => {
+					this.router.navigateByUrl('/chat');
+				},
+				error: (err: HttpErrorResponse) => {
+					if (err.status === 401) {
+						this.form.setErrors({ 'credentials-invalid': true });
+					}
+				},
+			});
 	}
 }
