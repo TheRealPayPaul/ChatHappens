@@ -1,5 +1,6 @@
 import { PrismaClient, User } from '@prisma/client';
 import { Service } from './service';
+import { UserDTO } from '../dto/user/user_dto';
 
 const client = new PrismaClient();
 
@@ -42,5 +43,11 @@ export class UserService extends Service {
         return client.user.create({
             data: userArgs,
         });
+    }
+
+    public static async get(): Promise<UserDTO[]> {
+        return (await client.user.findMany()).map((user) =>
+            UserDTO.toDTO(user)
+        );
     }
 }

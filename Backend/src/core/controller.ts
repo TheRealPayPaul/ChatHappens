@@ -31,4 +31,8 @@ export default class Controller {
             res
         );
     }
+
+    protected static queryParamToBool(value: string): boolean {
+        return (value + '').toLowerCase() === 'true';
+    }
 }
