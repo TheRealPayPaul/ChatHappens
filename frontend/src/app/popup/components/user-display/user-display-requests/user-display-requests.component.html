@@ -1,0 +1,14 @@
+<div class="display-user">
+	<div *ngFor="let user of users" class="user">
+		<app-user-info
+			[id]="user.id"
+			[name]="user.display_name"
+		></app-user-info>
+		<span class="material-symbols-rounded" (click)="acceptUser(user.id)">
+			check
+		</span>
+		<span class="material-symbols-rounded" (click)="declineUser(user.id)">
+			close
+		</span>
+	</div>
+</div>

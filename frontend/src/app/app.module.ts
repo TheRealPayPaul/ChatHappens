@@ -23,6 +23,12 @@ import { ChatInputBarComponent } from './chat/chat-input-bar-component/chat-inpu
 import { GithubComponent } from './common/components/github/github.component';
 import { ErrorInterceptor } from './common/interceptors/error.interceptor';
 import { FormErrorBoxComponent } from './common/components/form-error-box/form-error-box.component';
+import { PopupFriendsComponent } from './popup/popup-friends/popup-friends.component';
+import { UserInfoComponent } from './common/components/user-info/user-info.component';
+import { SeparatorComponent } from './popup/components/separator/separator.component';
+import { UserDisplayRequestsComponent } from './popup/components/user-display/user-display-requests/user-display-requests.component';
+import { UserDisplayFriendsComponent } from './popup/components/user-display/user-display-friends/user-display-friends.component';
+import { UserDisplaySearchComponent } from './popup/components/user-display/user-display-search/user-display-search.component';
 
 @NgModule({
 	declarations: [
@@ -44,6 +50,12 @@ import { FormErrorBoxComponent } from './common/components/form-error-box/form-e
 		ChatInputBarComponent,
 		GithubComponent,
 		FormErrorBoxComponent,
+		PopupFriendsComponent,
+		UserInfoComponent,
+		SeparatorComponent,
+		UserDisplayRequestsComponent,
+		UserDisplayFriendsComponent,
+		UserDisplaySearchComponent,
 	],
 	imports: [
 		BrowserModule,

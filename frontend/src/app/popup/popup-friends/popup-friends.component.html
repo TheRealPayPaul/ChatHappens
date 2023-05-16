@@ -1,0 +1,24 @@
+<div class="header-bar">
+	<h3>Friends</h3>
+	<span class="material-symbols-rounded" (click)="closePopup()">close</span>
+</div>
+
+<div class="content">
+	<div class="search">
+		<app-input label="Search friend" [(ngModel)]="searchValue"></app-input>
+		<button (click)="clearSearchValue()">Clear</button>
+	</div>
+
+	<ng-container *ngIf="!searchValue">
+		<app-separator>Pending Requests ({{ data.length }})</app-separator>
+		<app-user-display-requests [users]="data"></app-user-display-requests>
+
+		<app-separator>Friends</app-separator>
+		<app-user-display-friends [users]="data"></app-user-display-friends>
+	</ng-container>
+
+	<ng-container *ngIf="searchValue">
+		<app-separator>Search result</app-separator>
+		<app-user-display-search [users]="data"></app-user-display-search>
+	</ng-container>
+</div>

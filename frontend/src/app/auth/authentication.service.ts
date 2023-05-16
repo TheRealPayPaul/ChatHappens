@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserDTO } from './user-dto.model';
+import { RegisterDTO } from './register-dto.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Buffer } from 'buffer';
@@ -10,7 +10,7 @@ import { Buffer } from 'buffer';
 export class AuthenticationService {
 	constructor(private httpClient: HttpClient) {}
 
-	login(data: UserDTO): Observable<void> {
+	login(data: RegisterDTO): Observable<void> {
 		const credentials = `${data.email}:${data.password}`;
 
 		const headers = new HttpHeaders().set(
@@ -22,7 +22,7 @@ export class AuthenticationService {
 		});
 	}
 
-	register(data: UserDTO): Observable<UserDTO> {
+	register(data: RegisterDTO): Observable<RegisterDTO> {
 		return this.httpClient.post('/api/authorization/register', data);
 	}
 
