@@ -86,7 +86,7 @@ export class RegisterComponent {
 
 	register(): void {
 		if (!this.areEnteredPasswordsSame()) {
-			this.form.get('password')?.setErrors({ 'not-matching': true });
+			this.form.setErrors({ 'not-matching': true });
 			return;
 		}
 
