@@ -1,6 +1,7 @@
 import { PrismaClient, User } from '@prisma/client';
 import { Service } from './service';
 import { UserDTO } from '../dto/user/user_dto';
+import { FriendService } from '../../app/friends/friend_service';
 
 const client = new PrismaClient();
 
@@ -8,6 +9,13 @@ interface UserCreateArgs {
     email: string;
     display_name: string;
     password: string;
+}
+
+interface FindOptions {
+    currentUserId: string;
+    excludeSelf?: boolean;
+    excludeFriends?: boolean;
+    displayName?: string;
 }
 
 export class UserService extends Service {
@@ -45,9 +53,44 @@ export class UserService extends Service {
         });
     }
 
-    public static async get(): Promise<UserDTO[]> {
-        return (await client.user.findMany()).map((user) =>
-            UserDTO.toDTO(user)
-        );
+    public static async find({
+        currentUserId,
+        excludeSelf,
+        excludeFriends,
+        displayName,
+    }: FindOptions): Promise<UserDTO[]> {
+        const excludedUserIds: string[] = [];
+
+        if (excludeSelf) {
+            excludedUserIds.push(currentUserId);
+        }
+
+        if (excludeFriends) {
+            const friendIds: string[] = (
+                await FriendService.getFriends(currentUserId)
+            ).map((friend) => friend.id as string);
+            excludedUserIds.push(...friendIds);
+        }
+
+        return (
+            await client.user.findMany({
+                where: {
+                    AND: [
+                        {
+                            NOT: {
+                                user_id: {
+                                    in: excludedUserIds,
+                                },
+                            },
+                        },
+                        {
+                            display_name: {
+                                contains: displayName ?? '',
+                            },
+                        },
+                    ],
+                },
+            })
+        ).map((user) => UserDTO.toDTO(user));
     }
 }

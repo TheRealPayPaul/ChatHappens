@@ -47,7 +47,7 @@ export class PopupFriendsComponent implements OnInit {
 
 	searchValueChanged(): void {
 		this.userService
-			.searchForUser()
+			.searchForPotentialFriends(this.searchValue)
 			.subscribe((result) => (this.searchResults = result));
 	}
 
