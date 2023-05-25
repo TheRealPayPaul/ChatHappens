@@ -9,7 +9,9 @@ import { UserDTO } from '../../dtos/user-dto.model';
 export class UserService {
 	constructor(private httpClient: HttpClient) {}
 
-	searchForUser(): Observable<UserDTO[]> {
-		return this.httpClient.get<UserDTO[]>('/api/app/users/search');
+	searchForPotentialFriends(name: string): Observable<UserDTO[]> {
+		return this.httpClient.get<UserDTO[]>(
+			`/api/app/users/search?excludeFriends=true&excludeSelf=true&displayName=${name}`
+		);
 	}
 }
