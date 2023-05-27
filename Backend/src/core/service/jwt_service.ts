@@ -20,8 +20,12 @@ export default class JWTService extends Service {
     }
 
     public static getTokenData(req: Request): TokenData | null {
+        return this.getTokenDataFromString(req.cookies.auth);
+    }
+
+    public static getTokenDataFromString(jwtstring: string): TokenData | null {
         const encodedUserData: string | null =
-            /^\S+\.(.+)\.\S+$/g.exec(req.cookies.auth)?.[1] ?? null;
+            /^\S+\.(.+)\.\S+$/g.exec(jwtstring)?.[1] ?? null;
 
         return encodedUserData
             ? JSON.parse(Buffer.from(encodedUserData, 'base64').toString())
@@ -45,5 +49,14 @@ export default class JWTService extends Service {
             expirationDate.getDate() + parseInt(EnvService.getJwtTTL())
         );
         return expirationDate;
+    }
+
+    public static verifyToken(token: string): boolean {
+        try {
+            Jwt.verify(token, EnvService.getJwtSecret());
+            return true;
+        } catch {
+            return false;
+        }
     }
 }

@@ -8,6 +8,10 @@
 .text {
     font-size: 12px;
     color: $color-dark-text;
+
+    &.online {
+        color: #14AE5C;
+    }
 }
 
 .circle {
@@ -17,4 +21,8 @@
     border-radius: 100%;
     transform: translateY(-2px);
     margin-right: 3px;
+
+    &.online {
+        background-color: #14AE5C;
+    }
 }
