@@ -31,7 +31,16 @@ export class FriendRequestService {
 
 	declineFriendRequest(friendRequestId: string): Observable<void> {
 		return this.httpClient.post<void>(
-			FriendRequestService.REQUEST_URL + '/decline',
+			FriendRequestService.REQUEST_URL + '/delete',
+			{
+				id: friendRequestId,
+			}
+		);
+	}
+
+	revokeFriendRequest(friendRequestId: string): Observable<void> {
+		return this.httpClient.post<void>(
+			FriendRequestService.REQUEST_URL + '/delete',
 			{
 				id: friendRequestId,
 			}

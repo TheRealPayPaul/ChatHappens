@@ -1,6 +1,6 @@
 import Controller from '../../../core/controller';
 import { Request, Response } from 'express';
-import { StatusCode } from '../../../core/codes';
+import { ErrorCode, StatusCode } from '../../../core/codes';
 import { FriendRequestService } from './friend_request_service';
 import { CurrentUserService } from '../../../core/service/current-user-service';
 import { UserService } from '../../../core/service/user_service';
@@ -39,7 +39,14 @@ export class FriendRequestController extends Controller {
                 receiverId
             )
         ) {
-            this.sendBadRequestError('Friend request already exists', res);
+            this.sendError(
+                {
+                    Message: 'Friend request already exists',
+                    StatusCode: StatusCode.CONFLICT,
+                    ErrorCode: ErrorCode.FRIEND_REQUEST_ALREADY_EXISTS,
+                },
+                res
+            );
             return;
         }
 
@@ -71,7 +78,7 @@ export class FriendRequestController extends Controller {
         res.status(StatusCode.OK).send();
     }
 
-    public static async declineRequest(
+    public static async deleteFriendRequest(
         req: Request,
         res: Response
     ): Promise<void> {

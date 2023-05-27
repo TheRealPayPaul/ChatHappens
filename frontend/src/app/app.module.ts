@@ -26,9 +26,10 @@ import { FormErrorBoxComponent } from './common/components/form-error-box/form-e
 import { PopupFriendsComponent } from './popup/popup-friends/popup-friends.component';
 import { UserInfoComponent } from './common/components/user-info/user-info.component';
 import { SeparatorComponent } from './popup/components/separator/separator.component';
-import { UserDisplayRequestsComponent } from './popup/components/user-display/user-display-requests/user-display-requests.component';
+import { UserDisplayReceivedRequestsComponent } from './popup/components/user-display/user-display-received-requests/user-display-received-requests.component';
 import { UserDisplayFriendsComponent } from './popup/components/user-display/user-display-friends/user-display-friends.component';
 import { UserDisplaySearchComponent } from './popup/components/user-display/user-display-search/user-display-search.component';
+import { UserDisplaySentRequestsComponent } from './popup/components/user-display/user-display-sent-requests/user-display-sent-requests.component';
 
 @NgModule({
 	declarations: [
@@ -53,9 +54,10 @@ import { UserDisplaySearchComponent } from './popup/components/user-display/user
 		PopupFriendsComponent,
 		UserInfoComponent,
 		SeparatorComponent,
-		UserDisplayRequestsComponent,
+		UserDisplayReceivedRequestsComponent,
 		UserDisplayFriendsComponent,
 		UserDisplaySearchComponent,
+		UserDisplaySentRequestsComponent,
 	],
 	imports: [
 		BrowserModule,

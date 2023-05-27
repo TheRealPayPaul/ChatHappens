@@ -1,0 +1,14 @@
+<div class="display-user">
+	<div *ngFor="let friendRequest of friendRequests" class="user">
+		<app-user-info
+			[id]="friendRequest.from.id"
+			[name]="friendRequest.from.display_name"
+		></app-user-info>
+		<span
+			class="material-symbols-rounded"
+			(click)="revokeFriendRequest(friendRequest.id)"
+		>
+			remove
+		</span>
+	</div>
+</div>

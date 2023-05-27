@@ -4,14 +4,14 @@ import { FriendRequestService } from '../../../../common/services/friend-request
 import { Subject } from 'rxjs';
 
 @Component({
-	selector: 'app-user-display-requests',
-	templateUrl: './user-display-requests.component.html',
+	selector: 'app-user-display-received-requests',
+	templateUrl: './user-display-received-requests.component.html',
 	styleUrls: [
-		'./user-display-requests.component.scss',
+		'./user-display-received-requests.component.scss',
 		'./../user-display.scss',
 	],
 })
-export class UserDisplayRequestsComponent {
+export class UserDisplayReceivedRequestsComponent {
 	@Input() friendRequests: FriendRequestDTO[];
 
 	@Output() friendRequestAccepted: Subject<void> = new Subject<void>();

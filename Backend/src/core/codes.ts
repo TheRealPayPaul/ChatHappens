@@ -3,7 +3,8 @@ export enum ErrorCode {
     SENT_DATA_INVALID = 1,
     EMAIL_ALREADY_EXISTS = 2,
     AUTH_HEADER_MISSING = 3,
-    CREDENTIALS_INVALID = 4
+    CREDENTIALS_INVALID = 4,
+    FRIEND_REQUEST_ALREADY_EXISTS = 5
 }
 
 export enum StatusCode {
