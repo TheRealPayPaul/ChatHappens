@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SocketService } from '../socket-service/socket.service';
+import { SocketEvent, SocketService } from '../socket-service/socket.service';
 import { Observable, Subject } from 'rxjs';
 
 export interface UserStatusDTO {
@@ -12,7 +12,7 @@ export interface UserStatusDTO {
 })
 export class UserStatusService {
 	constructor(private socketService: SocketService) {
-		socketService.on('isOnline', (data: UserStatusDTO) => {
+		socketService.on(SocketEvent.IsOnline, (data: UserStatusDTO) => {
 			this.dataSource.next(data);
 		});
 	}

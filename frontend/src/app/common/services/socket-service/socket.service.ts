@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 
+export enum SocketEvent {
+	IsOnline = 'isOnline',
+}
+
 @Injectable({
 	providedIn: 'root',
 })
@@ -15,7 +19,7 @@ export class SocketService {
 		this.socket.emit(eventName, data);
 	}
 
-	public on(eventName: string, func: any): void {
+	public on(eventName: SocketEvent, func: any): void {
 		this.socket.on(eventName, func);
 	}
 }
