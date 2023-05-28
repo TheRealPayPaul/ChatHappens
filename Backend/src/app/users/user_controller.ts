@@ -18,7 +18,8 @@ export class UserController extends Controller {
         const displayName = req.query.displayName as string;
 
         res.status(StatusCode.OK).send(
-            await UserService.find(CurrentUserService.getCurrentUser(req).id, {
+            await UserService.find({
+                currentUserId: CurrentUserService.getCurrentUser(req).id,
                 excludeSelf,
                 excludeFriends,
                 displayName,

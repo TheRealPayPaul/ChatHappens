@@ -15,12 +15,14 @@ export class UserDisplaySearchComponent {
 	@Input() users: UserDTO[];
 
 	@Output() friendRequestSent: Subject<void> = new Subject<void>();
+	@Output() friendRequestAlreadyExists: Subject<void> = new Subject<void>();
 
 	constructor(private friendRequestService: FriendRequestService) {}
 
 	sendFriendRequest(userId: string): void {
-		this.friendRequestService
-			.sendFriendRequest(userId)
-			.subscribe(() => this.friendRequestSent.next());
+		this.friendRequestService.sendFriendRequest(userId).subscribe({
+			next: () => this.friendRequestSent.next(),
+			error: () => this.friendRequestAlreadyExists.next(),
+		});
 	}
 }

@@ -19,6 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
 	private ruleset: ErrorInterceptorRuleset = {
 		'/api/authorization/login': [401],
+		'/api/app/friends/requests/send': [409],
 	};
 
 	intercept(

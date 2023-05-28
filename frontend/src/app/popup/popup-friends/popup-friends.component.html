@@ -14,18 +14,23 @@
 	</div>
 
 	<ng-container *ngIf="!searchValue">
-		<app-separator
-			*ngIf="receivedFriendRequests.length > 0"
-			title="Pending Requests"
-		></app-separator>
-		<app-user-display-requests
-			[friendRequests]="receivedFriendRequests"
-			(friendRequestAccepted)="
-				fetchReceivedFriendRequests(); fetchFriends()
-			"
-			(friendRequestDeclined)="fetchReceivedFriendRequests()"
-		></app-user-display-requests>
-
+		<ng-container *ngIf="receivedFriendRequests.length > 0">
+			<app-separator title="Pending Requests"></app-separator>
+			<app-user-display-received-requests
+				[friendRequests]="receivedFriendRequests"
+				(friendRequestAccepted)="
+					fetchReceivedFriendRequests(); fetchFriends()
+				"
+				(friendRequestDeclined)="fetchReceivedFriendRequests()"
+			></app-user-display-received-requests>
+		</ng-container>
+		<ng-container *ngIf="sentFriendRequests.length > 0">
+			<app-separator title="Sent Requests"></app-separator>
+			<app-user-display-sent-requests
+				[friendRequests]="sentFriendRequests"
+				(friendRequestRevoked)="fetchSentFriendRequests()"
+			></app-user-display-sent-requests>
+		</ng-container>
 		<app-separator title="Friends"></app-separator>
 		<app-user-display-friends
 			[users]="friends"
@@ -37,7 +42,10 @@
 		<app-separator title="Search result"></app-separator>
 		<app-user-display-search
 			[users]="searchResults"
-			(friendRequestSent)="clearSearchValue()"
+			(friendRequestSent)="clearSearchValue(); fetchSentFriendRequests()"
+			(friendRequestAlreadyExists)="
+				displayError('Friend request already exits')
+			"
 		></app-user-display-search>
 	</ng-container>
 </div>

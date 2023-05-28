@@ -4,7 +4,7 @@ import { FriendRequestController } from '../friend_request_controller';
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    FriendRequestController.declineRequest(req, res);
+    FriendRequestController.deleteFriendRequest(req, res);
 });
 
 export default router;

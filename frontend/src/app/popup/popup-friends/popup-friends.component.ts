@@ -23,11 +23,13 @@ export class PopupFriendsComponent implements OnInit {
 	searchResults: UserDTO[] = [];
 
 	receivedFriendRequests: FriendRequestDTO[] = [];
+	sentFriendRequests: FriendRequestDTO[] = [];
 	friends: UserDTO[] = [];
 
 	ngOnInit(): void {
 		this.fetchFriends();
 		this.fetchReceivedFriendRequests();
+		this.fetchSentFriendRequests();
 	}
 
 	fetchReceivedFriendRequests(): void {
@@ -39,6 +41,14 @@ export class PopupFriendsComponent implements OnInit {
 			);
 	}
 
+	fetchSentFriendRequests(): void {
+		this.friendRequestService
+			.getSentFriendRequests()
+			.subscribe(
+				(friendsRequests) => (this.sentFriendRequests = friendsRequests)
+			);
+	}
+
 	fetchFriends(): void {
 		this.friendService
 			.getFriends()
@@ -46,6 +56,11 @@ export class PopupFriendsComponent implements OnInit {
 	}
 
 	searchValueChanged(): void {
+		this.searchResults = [];
+		if (!this.searchValue) {
+			return;
+		}
+
 		this.userService
 			.searchForPotentialFriends(this.searchValue)
 			.subscribe((result) => (this.searchResults = result));
@@ -57,5 +72,9 @@ export class PopupFriendsComponent implements OnInit {
 
 	clearSearchValue(): void {
 		this.searchValue = '';
+	}
+
+	displayError(message: string): void {
+		alert(message);
 	}
 }
