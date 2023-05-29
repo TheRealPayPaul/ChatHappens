@@ -1,7 +1,7 @@
 <div class="user">
 	<app-profile-picture class="user-pic"></app-profile-picture>
 	<div class="data">
-		<div class="name">{{ name }}</div>
-		<app-user-status [userId]="id"></app-user-status>
+		<div class="name">{{ user.display_name }}</div>
+		<app-user-status [userId]="user.id"></app-user-status>
 	</div>
 </div>

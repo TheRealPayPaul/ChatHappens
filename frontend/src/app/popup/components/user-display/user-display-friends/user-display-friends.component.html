@@ -1,9 +1,6 @@
 <div class="display-user">
 	<div *ngFor="let user of users" class="user">
-		<app-user-info
-			[id]="user.id"
-			[name]="user.display_name"
-		></app-user-info>
+		<app-user-info [user]="user"></app-user-info>
 		<span
 			class="material-symbols-rounded icon-offset-left"
 			(click)="removeUser(user.id)"

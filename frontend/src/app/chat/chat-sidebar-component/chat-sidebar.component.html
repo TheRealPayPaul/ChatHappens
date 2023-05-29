@@ -1,8 +1,7 @@
 <div class="contacts">
 	<app-chat-contact
 		*ngFor="let chat of chats"
-		[id]="chat.to"
-		name="Tobi"
+		[user]="chat.to"
 		[class.selected]="selectedChatId === chat.id"
 		(click)="selectChat(chat)"
 	></app-chat-contact>

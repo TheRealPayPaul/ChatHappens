@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { SingleChatDTO } from './single_chat_dto';
+import { UserDTO } from '../../core/dto/user/user_dto';
 
 const client = new PrismaClient();
 
@@ -22,12 +23,18 @@ export class ChatService {
                 where: {
                     OR: [{ user_1_id: userId }, { user_2_id: userId }],
                 },
+                include: {
+                    user_1: true,
+                    user_2: true,
+                },
             })
         ).map((entry) => {
-            const from =
-                entry.user_1_id === userId ? entry.user_1_id : entry.user_2_id;
-            const to =
-                entry.user_1_id === userId ? entry.user_2_id : entry.user_1_id;
+            const from = UserDTO.toDTO(
+                entry.user_1_id === userId ? entry.user_1 : entry.user_2
+            );
+            const to = UserDTO.toDTO(
+                entry.user_1_id === userId ? entry.user_2 : entry.user_1
+            );
 
             return SingleChatDTO.toDTO(entry.chat_id, to, from);
         });
@@ -62,6 +69,10 @@ export class ChatService {
                     },
                 ],
             },
+            include: {
+                user_1: true,
+                user_2: true,
+            },
         });
 
         if (!chat) {
@@ -70,8 +81,8 @@ export class ChatService {
 
         return new SingleChatDTO({
             id: chat.chat_id,
-            to: chat.user_1_id,
-            from: chat.user_2_id,
+            to: UserDTO.toDTO(chat.user_1),
+            from: UserDTO.toDTO(chat.user_2),
         });
     }
 

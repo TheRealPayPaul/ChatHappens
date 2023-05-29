@@ -1,7 +1,9 @@
+import { UserDTO } from '../../common/dtos/user-dto.model';
+
 export class SingleChatDTO {
 	id: string;
-	from: string;
-	to: string;
+	from: UserDTO;
+	to: UserDTO;
 
 	constructor(data: SingleChatDTO) {
 		this.id = data.id;
