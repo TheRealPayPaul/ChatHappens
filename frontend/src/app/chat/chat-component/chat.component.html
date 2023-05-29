@@ -1,4 +1,9 @@
-<div class="chat"></div>
-<div class="input">
-	<app-chat-input-bar></app-chat-input-bar>
-</div>
+<ng-container *ngIf="chatId; else noChatSelected">
+	<div class="chat">chatId: {{ chatId }}</div>
+	<div class="input">
+		<app-chat-input-bar></app-chat-input-bar>
+	</div>
+</ng-container>
+<ng-template #noChatSelected>
+	<p>no chat selected</p>
+</ng-template>
