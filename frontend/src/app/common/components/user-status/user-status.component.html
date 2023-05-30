@@ -1,2 +1,4 @@
-<div class="circle"></div>
-<span class="text">Offline</span>
+<div class="circle" [ngClass]="{ online: isOnline }"></div>
+<span class="text" [ngClass]="{ online: isOnline }">
+	{{ isOnline ? 'Online' : 'Offline' }}
+</span>
