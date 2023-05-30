@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io';
 import { SocketService } from '../service/socket_service';
-import { SocketFunctions } from './socketFunctions';
+import { SocketFunctions } from './socket_functions';
 
 interface ConnectedSocketList {
     // User Id

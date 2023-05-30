@@ -5,7 +5,7 @@ import { Server } from 'socket.io';
 import authorization_router from './authorization/router';
 import app_router from './app/router';
 import { loggedIn } from './core/guard/auth_guard';
-import { SocketHandler } from './core/socket.io/socketHandler';
+import { SocketHandler } from './core/socket.io/socket_handler';
 
 const app = express();
 const server = http.createServer(app);

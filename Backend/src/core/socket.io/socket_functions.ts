@@ -1,5 +1,5 @@
 import { Socket } from 'socket.io';
-import { SocketHandler, UserStatusDTO } from './socketHandler';
+import { SocketHandler, UserStatusDTO } from './socket_handler';
 
 export class SocketFunctions {
     public static onDisconnect(socket: Socket): void {
