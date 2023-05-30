@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { UserDTO } from '../../core/dto/user/user_dto';
+import { ChatService } from '../chats/chat_service';
 
 const client = new PrismaClient();
 
@@ -12,11 +13,15 @@ export class FriendService {
             return;
         }
 
-        await client.friend.create({
-            data: {
-                user_1_id: userId1,
-                user_2_id: userId2,
-            },
+        await client.$transaction(async () => {
+            await client.friend.create({
+                data: {
+                    user_1_id: userId1,
+                    user_2_id: userId2,
+                },
+            });
+
+            await ChatService.saveSingleChat(userId1, userId2);
         });
     }
 
@@ -109,10 +114,23 @@ export class FriendService {
             return;
         }
 
-        await client.friend.delete({
-            where: {
-                friend_id: friend.friend_id,
-            },
+        await client.$transaction(async () => {
+            await client.friend.delete({
+                where: {
+                    friend_id: friend.friend_id,
+                },
+            });
+
+            const chat = await ChatService.getChat(
+                friend.user_1_id,
+                friend.user_2_id
+            );
+
+            if (!chat) {
+                throw new Error('Chat not found');
+            }
+
+            await ChatService.deleteChat(chat?.id);
         });
     }
 }
