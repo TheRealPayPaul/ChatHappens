@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { UserDTO } from '../../common/dtos/user-dto.model';
 
 @Component({
 	selector: 'app-chat-contact',
@@ -6,6 +7,5 @@ import { Component, Input } from '@angular/core';
 	styleUrls: ['./chat-contact.component.scss'],
 })
 export class ChatContactComponent {
-	@Input() id: string;
-	@Input() name: string;
+	@Input() user: UserDTO;
 }

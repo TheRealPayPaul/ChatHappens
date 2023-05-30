@@ -1,7 +1,9 @@
+import { UserDTO } from '../../core/dto/user/user_dto';
+
 export class SingleChatDTO {
     id: string;
-    from: string;
-    to: string;
+    from: UserDTO;
+    to: UserDTO;
 
     constructor(data: SingleChatDTO) {
         this.id = data.id;
@@ -9,7 +11,7 @@ export class SingleChatDTO {
         this.to = data.to;
     }
 
-    static toDTO(id: string, to: string, from: string): SingleChatDTO {
+    static toDTO(id: string, to: UserDTO, from: UserDTO): SingleChatDTO {
         return new SingleChatDTO({ id, to, from });
     }
 }

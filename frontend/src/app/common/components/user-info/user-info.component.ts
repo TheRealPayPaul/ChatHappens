@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { UserDTO } from '../../dtos/user-dto.model';
 
 @Component({
 	selector: 'app-user-info',
@@ -6,6 +7,5 @@ import { Component, Input } from '@angular/core';
 	styleUrls: ['./user-info.component.scss'],
 })
 export class UserInfoComponent {
-	@Input() id: string;
-	@Input() name: string;
+	@Input() user: UserDTO;
 }

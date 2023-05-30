@@ -6,8 +6,7 @@
 		<app-user-info
 			*ngIf="selectedChat"
 			class="user-info"
-			[id]="selectedChat.to"
-			name="Tobi"
+			[user]="selectedChat.to"
 		></app-user-info>
 		<div class="logout" (click)="clickLogout()">
 			<span class="logout-text">Logout</span>
