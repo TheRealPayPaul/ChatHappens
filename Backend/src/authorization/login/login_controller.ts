@@ -39,7 +39,7 @@ export default class LoginController extends Controller {
                 {
                     Message: 'Credentials are invalid!',
                     ErrorCode: ErrorCode.CREDENTIALS_INVALID,
-                    StatusCode: StatusCode.UNAUTHORIZED,
+                    StatusCode: StatusCode.I_AM_A_TEAPOT,
                 },
                 res
             );

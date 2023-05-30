@@ -3,12 +3,18 @@ import { RegisterDTO } from './register-dto.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Buffer } from 'buffer';
+import { CookieService } from 'ngx-cookie';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthenticationService {
-	constructor(private httpClient: HttpClient) {}
+	private readonly AUTH_COOKIE_NAME = 'auth';
+
+	constructor(
+		private httpClient: HttpClient,
+		private cookieService: CookieService
+	) {}
 
 	login(email: string, password: string): Observable<void> {
 		const credentials = `${email}:${password}`;
@@ -24,6 +30,20 @@ export class AuthenticationService {
 
 	register(data: RegisterDTO): Observable<RegisterDTO> {
 		return this.httpClient.post('/api/authorization/register', data);
+	}
+
+	/**
+	 * Logout user.
+	 */
+	logout(): void {
+		this.cookieService.remove(this.AUTH_COOKIE_NAME);
+	}
+
+	/**
+	 * Get if user is logged in.
+	 */
+	isLoggedIn(): boolean {
+		return !!this.cookieService.get(this.AUTH_COOKIE_NAME);
 	}
 
 	/**

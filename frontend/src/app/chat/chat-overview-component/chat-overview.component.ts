@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketService } from 'src/app/common/services/socket-service/socket.service';
 import { ChatStateService } from '../chat-state.service';
 import { SingleChatDTO } from '../models/single-chat-dto.model';
+import { AuthenticationService } from '../../auth/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-chat-overview',
@@ -11,8 +12,9 @@ import { SingleChatDTO } from '../models/single-chat-dto.model';
 export class ChatOverviewComponent implements OnInit {
 	selectedChat: SingleChatDTO | null;
 	constructor(
-		private socketService: SocketService,
-		private chatStateService: ChatStateService
+		private chatStateService: ChatStateService,
+		private authService: AuthenticationService,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -21,8 +23,8 @@ export class ChatOverviewComponent implements OnInit {
 		);
 	}
 
-	clickLogout(): void {
-		this.socketService.send('hello', { msg: 'huhu' });
-		console.log('[ChatOverview] Clicked Logout');
+	logout(): void {
+		this.authService.logout();
+		this.router.navigateByUrl('login');
 	}
 }

@@ -74,10 +74,10 @@ export class LoginComponent {
 			.login(this.form.value.email, this.form.value.password)
 			.subscribe({
 				next: () => {
-					this.router.navigateByUrl('/chat');
+					this.router.navigateByUrl('/');
 				},
 				error: (err: HttpErrorResponse) => {
-					if (err.status === 401) {
+					if (err.status === 418) {
 						this.form.setErrors({ 'credentials-invalid': true });
 					}
 				},
