@@ -1,8 +1,10 @@
 <div class="contacts">
-	<app-chat-contact id="123" name="Tobi" selected></app-chat-contact>
 	<app-chat-contact
-		id="179724cc-de31-4b0f-b2d0-81a0943a9471"
-		name="Dummy"
+		*ngFor="let chat of chats"
+		[id]="chat.to"
+		name="Tobi"
+		[class.selected]="selectedChatId === chat.id"
+		(click)="selectChat(chat)"
 	></app-chat-contact>
 </div>
 <div class="user-menu">
