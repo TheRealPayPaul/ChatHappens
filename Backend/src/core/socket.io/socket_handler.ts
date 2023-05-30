@@ -2,6 +2,12 @@ import { Server, Socket } from 'socket.io';
 import { SocketService } from '../service/socket_service';
 import { SocketFunctions } from './socket_functions';
 
+enum SocketEvent {
+	IsOnline = 'isOnline',
+    Connect = 'connect',
+    Disconnect = 'disconnect'
+}
+
 interface ConnectedSocketList {
     // User Id
     [key: string]: {
@@ -26,7 +32,7 @@ export class SocketHandler {
 
     private constructor(io: Server) {
         this.IO = io;
-        this.IO.on('connection', (socket: Socket) => {
+        this.IO.on(SocketEvent.Connect, (socket: Socket) => {
             if (!SocketService.isAuthenticated(socket)) {
                 socket.disconnect();
                 return;
@@ -37,8 +43,8 @@ export class SocketHandler {
                 return;
             }
 
-            socket.on('disconnect', () => SocketFunctions.onDisconnect(socket));
-            socket.on('isOnline', (data) => SocketFunctions.onIsOnline(socket, data));
+            socket.on(SocketEvent.Disconnect, () => SocketFunctions.onDisconnect(socket));
+            socket.on(SocketEvent.IsOnline, (data) => SocketFunctions.onIsOnline(socket, data));
         });
     }
 
