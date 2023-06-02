@@ -5,10 +5,14 @@
 		[class.selected]="selectedChatId === chat.id"
 		(click)="selectChat(chat)"
 	></app-chat-contact>
+	<input (change)="setProfilePicture($event)" type="file" accept="image/*" />
 </div>
 <div class="user-menu">
 	<div class="user-data">
-		<app-profile-picture class="user-img"></app-profile-picture>
+		<app-profile-picture
+			[userId]="currentUserId"
+			class="user-img"
+		></app-profile-picture>
 		<span>Paul</span>
 	</div>
 	<div class="actions">
