@@ -1,5 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { SocketService } from '../../services/socket-service/socket.service';
+import {
+	SocketEvent,
+	SocketService,
+} from '../../services/socket-service/socket.service';
 import {
 	UserStatusDTO,
 	UserStatusService,
@@ -32,7 +35,7 @@ export class UserStatusComponent implements OnInit, OnDestroy {
 			});
 		// Request a user-status change message from the server
 		// For a specified id
-		this.socketService.send('isOnline', { id: this.userId });
+		this.socketService.send(SocketEvent.IsOnline, { id: this.userId });
 	}
 
 	ngOnDestroy(): void {

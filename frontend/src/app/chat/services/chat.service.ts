@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SingleChatDTO } from './models/single-chat-dto.model';
+import { SingleChatDTO } from '../models/single-chat-dto.model';
 
 @Injectable({
 	providedIn: 'root',

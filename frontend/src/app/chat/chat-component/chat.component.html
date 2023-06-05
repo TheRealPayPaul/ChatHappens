@@ -1,7 +1,14 @@
 <ng-container *ngIf="chatId; else noChatSelected">
-	<div class="chat">chatId: {{ chatId }}</div>
+	<div class="chat">
+		<ng-container *ngFor="let message of messages">
+			<app-chat-message-bubble
+				[message]="message"
+				[username]="lookUpUsername(message.userId)"
+			></app-chat-message-bubble>
+		</ng-container>
+	</div>
 	<div class="input">
-		<app-chat-input-bar></app-chat-input-bar>
+		<app-chat-input-bar [chatId]="chatId"></app-chat-input-bar>
 	</div>
 </ng-container>
 <ng-template #noChatSelected>

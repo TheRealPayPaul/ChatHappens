@@ -1,5 +1,6 @@
 import { Message, MessageModel } from './message_model';
-import { SillyGooseService } from '../../core/service/silly_goose_service';
+import { CurrentUser } from '../../core/service/current-user';
+import { MessageDTO } from './message_dto';
 
 interface SaveMessageParams {
     chatId: string;
@@ -13,8 +14,6 @@ export class MessageService {
         userId,
         content,
     }: SaveMessageParams): Promise<void> {
-        await SillyGooseService.connect();
-
         await MessageModel.create({
             chatId,
             userId,
@@ -22,13 +21,15 @@ export class MessageService {
         });
     }
 
-    static async getMessages(chatId: string): Promise<Message[]> {
-        await SillyGooseService.connect();
-
-        return MessageModel.find({
+    static async getMessages(chatId: string, currentUser: CurrentUser): Promise<MessageDTO[]> {
+        const messages = await MessageModel.find({
             chatId,
         }).sort({
-            timestamp: 1,
+            timestamp: -1,
+        });
+
+        return messages.map((msg: Message) => {
+            return MessageDTO.toDTO(msg, currentUser);
         });
     }
 }

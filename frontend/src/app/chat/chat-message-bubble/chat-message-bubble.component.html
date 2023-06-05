@@ -1,0 +1,7 @@
+<div class="container" [ngClass]="{ isright: message.sender === self }">
+	<div class="header">
+		<span class="user-name">{{ username }}</span>
+		<span class="date">{{ date }}</span>
+	</div>
+	<div class="content">{{ message.content }}</div>
+</div>

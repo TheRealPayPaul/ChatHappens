@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/common/services/modal-service/modal.service';
 import { PopupFriendsComponent } from 'src/app/popup/popup-friends/popup-friends.component';
 import { SingleChatDTO } from '../models/single-chat-dto.model';
-import { ChatService } from '../chat.service';
-import { ChatStateService } from '../chat-state.service';
+import { ChatService } from '../services/chat.service';
+import { ChatStateService } from '../services/chat-state.service';
 
 @Component({
 	selector: 'app-chat-sidebar',

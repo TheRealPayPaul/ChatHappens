@@ -2,10 +2,11 @@ import { Server, Socket } from 'socket.io';
 import { SocketService } from '../service/socket_service';
 import { SocketFunctions } from './socket_functions';
 
-enum SocketEvent {
+export enum SocketEvent {
 	IsOnline = 'isOnline',
     Connect = 'connect',
-    Disconnect = 'disconnect'
+    Disconnect = 'disconnect',
+    Message = 'message',
 }
 
 interface ConnectedSocketList {
@@ -45,6 +46,7 @@ export class SocketHandler {
 
             socket.on(SocketEvent.Disconnect, () => SocketFunctions.onDisconnect(socket));
             socket.on(SocketEvent.IsOnline, (data) => SocketFunctions.onIsOnline(socket, data));
+            socket.on(SocketEvent.Message, (data) => SocketFunctions.onMessage(socket, data));
         });
     }
 
