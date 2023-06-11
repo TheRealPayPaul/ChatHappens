@@ -30,6 +30,7 @@ import { UserDisplayFriendsComponent } from './popup/components/user-display/use
 import { UserDisplaySearchComponent } from './popup/components/user-display/user-display-search/user-display-search.component';
 import { UserDisplaySentRequestsComponent } from './popup/components/user-display/user-display-sent-requests/user-display-sent-requests.component';
 import { CookieModule } from 'ngx-cookie';
+import { ChatMessageBubbleComponent } from './chat/chat-message-bubble/chat-message-bubble.component';
 
 @NgModule({
 	declarations: [
@@ -57,6 +58,7 @@ import { CookieModule } from 'ngx-cookie';
 		UserDisplayFriendsComponent,
 		UserDisplaySearchComponent,
 		UserDisplaySentRequestsComponent,
+		ChatMessageBubbleComponent,
 	],
 	imports: [
 		BrowserModule,

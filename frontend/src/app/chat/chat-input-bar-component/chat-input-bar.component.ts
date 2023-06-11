@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MessageService } from '../services/message.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-chat-input-bar',
@@ -6,13 +8,25 @@ import { Component } from '@angular/core';
 	styleUrls: ['./chat-input-bar.component.scss'],
 })
 export class ChatInputBarComponent {
-	clickImport(): void {
-		console.log('[ChatInputBar] Clicked Import');
+	constructor(private messageService: MessageService) {}
+
+	@Input() chatId: string | null;
+	messageFormControl = new FormControl('', {
+		nonNullable: true,
+	});
+
+	clickSend(): void {
+		if (!this.chatId) return;
+		if (this.messageFormControl.value.length <= 0) return;
+
+		this.messageService.sendMessage(
+			this.chatId,
+			this.messageFormControl.value
+		);
+		this.messageFormControl.setValue('');
 	}
+
 	clickEmoticon(): void {
 		console.log('[ChatInputBar] Clicked Emoticon');
-	}
-	clickSend(): void {
-		console.log('[ChatInputBar] Clicked Send');
 	}
 }

@@ -5,7 +5,12 @@
 }
 
 .chat {
+	padding-top: 1rem;
 	flex-grow: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column-reverse;
+	overflow-y: scroll;
 }
 
 .input {
@@ -22,4 +27,8 @@
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+}
+
+::-webkit-scrollbar {
+	display: none;
 }

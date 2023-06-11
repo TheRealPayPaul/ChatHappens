@@ -3,6 +3,7 @@ import { io, Socket } from 'socket.io-client';
 
 export enum SocketEvent {
 	IsOnline = 'isOnline',
+	Message = 'message',
 }
 
 @Injectable({
@@ -15,7 +16,11 @@ export class SocketService {
 		this.socket = io();
 	}
 
-	public send(eventName: string, data: object): void {
+	public disconnect(): void {
+		this.socket.disconnect();
+	}
+
+	public send(eventName: SocketEvent, data: object): void {
 		this.socket.emit(eventName, data);
 	}
 

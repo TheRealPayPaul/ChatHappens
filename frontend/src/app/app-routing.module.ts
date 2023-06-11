@@ -18,6 +18,11 @@ const routes: Routes = [
 		canActivate: [loggedIn],
 		component: ChatOverviewComponent,
 	},
+	{
+		path: '**',
+		redirectTo: '',
+		pathMatch: 'full',
+	},
 ];
 
 @NgModule({

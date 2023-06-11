@@ -4,7 +4,8 @@ export enum ErrorCode {
     EMAIL_ALREADY_EXISTS = 2,
     AUTH_HEADER_MISSING = 3,
     CREDENTIALS_INVALID = 4,
-    FRIEND_REQUEST_ALREADY_EXISTS = 5
+    FRIEND_REQUEST_ALREADY_EXISTS = 5,
+    MISSING_CHAT_ID = 6
 }
 
 export enum StatusCode {

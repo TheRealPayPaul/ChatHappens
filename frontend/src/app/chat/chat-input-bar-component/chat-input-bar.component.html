@@ -1,10 +1,11 @@
-<div class="action action-left">
-	<span class="material-symbols-rounded" (click)="clickImport()">
-		add_circle
-	</span>
-</div>
 <div class="input">
-	<input type="text" placeholder="Message to Tobias..." />
+	<form (submit)="clickSend()">
+		<input
+			[formControl]="messageFormControl"
+			type="text"
+			placeholder="Message..."
+		/>
+	</form>
 </div>
 <div class="action action-right">
 	<span class="material-symbols-rounded" (click)="clickEmoticon()">

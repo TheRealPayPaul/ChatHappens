@@ -1,0 +1,44 @@
+@import 'variables';
+
+:host {
+    color: $color-text;
+}
+
+.container {
+    background-color: $color-fill-lowlight;
+    width: fit-content;
+    min-width: min-content;
+    max-width: 45%;
+    padding: .5rem .8rem;
+    border-left: solid 3px $color-red-neon;
+    border-radius: 5px;
+    margin-left: .8rem;
+    margin-bottom: .5rem;
+}
+
+.isright {
+    border: none;
+    border-right: solid 3px $color-blue-neon;
+    margin-left: auto;
+    margin-right: .8rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .6rem;
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .date {
+        color: $color-dark-text;
+        font-size: 12px;
+    }
+}
+
+.content {
+    font-size: 15px;
+}

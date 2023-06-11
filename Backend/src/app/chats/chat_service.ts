@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { SingleChatDTO } from './single_chat_dto';
 import { UserDTO } from '../../core/dto/user/user_dto';
+import { ChatDTO } from './chat_dto';
 
 const client = new PrismaClient();
 
@@ -37,6 +38,23 @@ export class ChatService {
             );
 
             return SingleChatDTO.toDTO(entry.chat_id, to, from);
+        });
+    }
+
+    static async getChatById(chatId: string): Promise<ChatDTO | null> {
+        const chat = await client.singleChat.findFirst({
+            where: {
+                chat_id: chatId,
+            }
+        });
+
+        if (!chat) {
+            return null;
+        }
+
+        return new ChatDTO({
+            id: chat.chat_id,
+            participants: [ chat.user_1_id, chat.user_2_id ],
         });
     }
 
