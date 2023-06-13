@@ -10,7 +10,7 @@ $bar-height: 66px;
 	margin: 0 15px;
 	background-color: $color-fill;
 	border-radius: 5px;
-	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 8px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0 3px 8px;
 }
 
 .input {
@@ -31,37 +31,41 @@ $bar-height: 66px;
 	}
 }
 
-.action {
+.actions {
 	flex-shrink: 0;
 	margin: 0 10px;
-}
 
-.material-symbols-rounded {
-	font-size: 42px;
-	color: $color-dark-text;
-    transform-origin: 50% calc(50% + 4px);
-	transform: translateY(4px);
-	cursor: pointer;
-	user-select: none;
-}
+	& > * {
+		font-size: 42px;
+		color: $color-dark-text;
+		transform-origin: 50% calc(50% + 4px);
+		transform: translateY(4px);
+		cursor: pointer;
+		user-select: none;
 
-.material-symbols-rounded:hover {
-    animation: nod .5s;
-}
-
-@keyframes nod {
-	0% {
-        transform: translateY(4px);
-    }
-    30% {
-        transform: rotateZ(-20deg) translateY(4px);
-    }
-	100% {
-		transform: rotateZ(0deg) translateY(4px);
+		&:not(:last-child) {
+			margin-right: 0.5rem;
+		}
 	}
 }
 
 .send-icon {
 	color: $color-grey-text;
 	margin-left: 8px;
+}
+
+.send-icon:hover {
+	animation: nod 0.5s;
+}
+
+@keyframes nod {
+	0% {
+		transform: translateY(4px);
+	}
+	30% {
+		transform: rotateZ(-20deg) translateY(4px);
+	}
+	100% {
+		transform: rotateZ(0deg) translateY(4px);
+	}
 }
