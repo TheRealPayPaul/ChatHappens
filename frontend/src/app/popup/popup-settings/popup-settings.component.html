@@ -1,0 +1,19 @@
+<div class="header-bar">
+	<h3>Settings</h3>
+	<span class="material-symbols-rounded" (click)="closePopup()">close</span>
+</div>
+
+<div class="content">
+	<nav>
+		<span
+			*ngFor="let category of categories"
+			[ngClass]="{ selected: selectedCategory === category.name }"
+			(click)="changeCategory(category.name)"
+		>
+			{{ category.name }}
+		</span>
+	</nav>
+	<div class="setting-content">
+		<template #settingContent></template>
+	</div>
+</div>

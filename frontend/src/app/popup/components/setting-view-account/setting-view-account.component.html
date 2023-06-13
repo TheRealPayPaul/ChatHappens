@@ -1,0 +1,34 @@
+<form [formGroup]="form_email" class="setting-form" (ngSubmit)="saveSettings()">
+	<app-separator title="Change Email"></app-separator>
+	<app-form-error-box [form]="form_email"></app-form-error-box>
+	<app-input
+		formControlName="email"
+		[type]="InputType.EMAIL"
+		label="Email"
+		[errors]="form_email.controls['email'].errors"
+	></app-input>
+	<button type="submit">Change Email</button>
+</form>
+
+<form
+	[formGroup]="form_password"
+	class="setting-form"
+	(ngSubmit)="saveSettingsPassword()"
+>
+	<app-separator title="New Password"></app-separator>
+	<app-form-error-box [form]="form_password"></app-form-error-box>
+	<app-input
+		formControlName="new_password"
+		[type]="InputType.PASSWORD"
+		label="New Password"
+		[errors]="form_password.controls['new_password'].errors"
+	></app-input>
+	<div class="space"></div>
+	<app-input
+		formControlName="repeat_password"
+		[type]="InputType.PASSWORD"
+		label="Repeat Password"
+		[errors]="form_password.controls['repeat_password'].errors"
+	></app-input>
+	<button type="submit">Change Password</button>
+</form>

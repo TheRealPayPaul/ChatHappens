@@ -1,0 +1,27 @@
+<form>
+	<app-separator title="Change Picture"></app-separator>
+	<div class="picture-container">
+		<div><img src="assets/placeholder_pic.png" /></div>
+		<div class="empty-picture">
+			<span class="material-symbols-rounded">image</span>
+			<span>Drag Image</span>
+		</div>
+	</div>
+	<button type="submit">Change Picture</button>
+</form>
+
+<form
+	[formGroup]="form_display_name"
+	class="setting-form"
+	(ngSubmit)="saveSettings()"
+>
+	<app-separator title="Change Display Name"></app-separator>
+	<app-form-error-box [form]="form_display_name"></app-form-error-box>
+	<app-input
+		formControlName="display_name"
+		[type]="InputType.TEXT"
+		label="Display Name"
+		[errors]="form_display_name.controls['display_name'].errors"
+	></app-input>
+	<button type="submit">Change Display Name</button>
+</form>
