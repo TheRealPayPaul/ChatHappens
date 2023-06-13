@@ -4,6 +4,8 @@ import { PopupFriendsComponent } from 'src/app/popup/popup-friends/popup-friends
 import { SingleChatDTO } from '../models/single-chat-dto.model';
 import { ChatService } from '../services/chat.service';
 import { ChatStateService } from '../services/chat-state.service';
+import { ProfilePictureService } from '../../common/services/profile-picture-service/profile-picture.service';
+import { UserService } from '../../common/services/user-service/user.service';
 
 @Component({
 	selector: 'app-chat-sidebar',
@@ -14,10 +16,20 @@ export class ChatSidebarComponent implements OnInit {
 	chats: SingleChatDTO[] = [];
 	selectedChatId: string | null;
 
+	currentUserId: string;
+
+	setProfilePicture(e: any): any {
+		this.profilePictureService
+			.setProfilePicture(e.target.files[0])
+			.subscribe();
+	}
+
 	constructor(
+		private profilePictureService: ProfilePictureService,
 		private modalService: ModalService,
 		private chatService: ChatService,
-		private chatStateService: ChatStateService
+		private chatStateService: ChatStateService,
+		private userService: UserService
 	) {}
 
 	ngOnInit(): void {
@@ -25,6 +37,8 @@ export class ChatSidebarComponent implements OnInit {
 		this.chatStateService.chatSelected$.subscribe((data) => {
 			this.selectedChatId = data?.id ?? null;
 		});
+
+		this.currentUserId = this.userService.getCurrentUserId();
 	}
 
 	selectChat(chat: SingleChatDTO): void {

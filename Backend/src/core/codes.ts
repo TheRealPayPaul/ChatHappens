@@ -1,11 +1,12 @@
 export enum ErrorCode {
-    UNDEFINED_CODE = -1,
-    SENT_DATA_INVALID = 1,
-    EMAIL_ALREADY_EXISTS = 2,
-    AUTH_HEADER_MISSING = 3,
-    CREDENTIALS_INVALID = 4,
-    FRIEND_REQUEST_ALREADY_EXISTS = 5,
-    MISSING_CHAT_ID = 6
+    UNDEFINED_CODE = 'undefined_code',
+    SENT_DATA_INVALID = 'sent_data_invalid',
+    EMAIL_ALREADY_EXISTS = 'email_already_exists',
+    AUTH_HEADER_MISSING = 'auth_header_missing',
+    CREDENTIALS_INVALID = 'credentials_invalid',
+    FRIEND_REQUEST_ALREADY_EXISTS = 'friend_request_already_exists',
+    MISSING_CHAT_ID = 'missing_chat_id',
+    USER_NOT_FOUND = 'user_not_found',
 }
 
 export enum StatusCode {

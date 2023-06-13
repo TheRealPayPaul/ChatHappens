@@ -3,19 +3,26 @@ import { RegisterDTO } from './register-dto.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Buffer } from 'buffer';
-import { CookieService } from 'ngx-cookie';
+import { AuthTokenService } from '../common/services/token-service/auth-token.service';
 
+/**
+ * Service for authentication related methods.
+ */
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthenticationService {
-	private readonly AUTH_COOKIE_NAME = 'auth';
-
 	constructor(
 		private httpClient: HttpClient,
-		private cookieService: CookieService
+		private authTokenService: AuthTokenService
 	) {}
 
+	/**
+	 * Log in user.
+	 *
+	 * @param email email of user
+	 * @param password password of user
+	 */
 	login(email: string, password: string): Observable<void> {
 		const credentials = `${email}:${password}`;
 
@@ -28,6 +35,10 @@ export class AuthenticationService {
 		});
 	}
 
+	/**
+	 * Register user.
+	 * @param data data of user for registration.
+	 */
 	register(data: RegisterDTO): Observable<RegisterDTO> {
 		return this.httpClient.post('/api/authorization/register', data);
 	}
@@ -36,18 +47,19 @@ export class AuthenticationService {
 	 * Logout user.
 	 */
 	logout(): void {
-		this.cookieService.remove(this.AUTH_COOKIE_NAME);
+		this.authTokenService.removeToken();
 	}
 
 	/**
 	 * Get if user is logged in.
 	 */
 	isLoggedIn(): boolean {
-		return !!this.cookieService.get(this.AUTH_COOKIE_NAME);
+		return !!this.authTokenService.getToken();
 	}
 
 	/**
 	 * Check if email is unique.
+	 *
 	 * @param email email to check.
 	 */
 	isEmailUnique(email: string): Observable<boolean> {
