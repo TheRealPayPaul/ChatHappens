@@ -8,12 +8,12 @@ import { FormControl } from '@angular/forms';
 	styleUrls: ['./chat-input-bar.component.scss'],
 })
 export class ChatInputBarComponent {
-	constructor(private messageService: MessageService) {}
-
 	@Input() chatId: string | null;
 	messageFormControl = new FormControl('', {
 		nonNullable: true,
 	});
+
+	constructor(private messageService: MessageService) {}
 
 	clickSend(): void {
 		if (!this.chatId) return;
@@ -26,7 +26,7 @@ export class ChatInputBarComponent {
 		this.messageFormControl.setValue('');
 	}
 
-	clickEmoticon(): void {
-		console.log('[ChatInputBar] Clicked Emoticon');
+	appendValueToInput(emoji: string): void {
+		this.messageFormControl.setValue(this.messageFormControl.value + emoji);
 	}
 }

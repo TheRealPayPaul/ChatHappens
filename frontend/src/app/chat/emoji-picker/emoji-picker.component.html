@@ -1,0 +1,15 @@
+<span
+	class="material-symbols-rounded"
+	(click)="toggleEmojiPicker()"
+	#openPickerButton
+>
+	insert_emoticon
+</span>
+<emoji-mart
+	[style.visibility]="showEmojiPicker ? 'visible' : 'hidden'"
+	[isNative]="true"
+	[showSingleCategory]="true"
+	[enableSearch]="false"
+	(emojiSelect)="onEmojiSelected($event); closeEmojiPicker()"
+	(click)="$event.stopPropagation()"
+></emoji-mart>

@@ -31,6 +31,8 @@ import { UserDisplaySearchComponent } from './popup/components/user-display/user
 import { UserDisplaySentRequestsComponent } from './popup/components/user-display/user-display-sent-requests/user-display-sent-requests.component';
 import { CookieModule } from 'ngx-cookie';
 import { ChatMessageBubbleComponent } from './chat/chat-message-bubble/chat-message-bubble.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { EmojiPickerComponent } from './chat/emoji-picker/emoji-picker.component';
 
 @NgModule({
 	declarations: [
@@ -59,6 +61,7 @@ import { ChatMessageBubbleComponent } from './chat/chat-message-bubble/chat-mess
 		UserDisplaySearchComponent,
 		UserDisplaySentRequestsComponent,
 		ChatMessageBubbleComponent,
+		EmojiPickerComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -67,6 +70,7 @@ import { ChatMessageBubbleComponent } from './chat/chat-message-bubble/chat-mess
 		ReactiveFormsModule,
 		HttpClientModule,
 		CookieModule.withOptions(),
+		PickerModule,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
