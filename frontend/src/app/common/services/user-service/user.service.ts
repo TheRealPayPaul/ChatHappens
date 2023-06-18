@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { UserDTO } from '../../dtos/user-dto.model';
 import { AuthTokenService } from '../token-service/auth-token.service';
 
+export interface CurrentUser {
+	id: string;
+	displayName: string;
+}
+
 @Injectable({
 	providedIn: 'root',
 })
@@ -28,7 +33,11 @@ export class UserService {
 	/**
 	 * Get id of current user.
 	 */
-	getCurrentUserId(): string {
-		return this.authTokenService.getTokenData().id;
+	getCurrentUser(): CurrentUser {
+		const tokenData = this.authTokenService.getTokenData();
+		return {
+			id: tokenData.id,
+			displayName: tokenData.display_name,
+		};
 	}
 }

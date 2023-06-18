@@ -10,10 +10,10 @@
 <div class="user-menu">
 	<div class="user-data">
 		<app-profile-picture
-			[userId]="currentUserId"
+			[userId]="currentUser.id"
 			class="user-img"
 		></app-profile-picture>
-		<span>Paul</span>
+		<span>{{ currentUser.displayName }}</span>
 	</div>
 	<div class="actions">
 		<span class="material-symbols-rounded" (click)="openFriendsPopup()">

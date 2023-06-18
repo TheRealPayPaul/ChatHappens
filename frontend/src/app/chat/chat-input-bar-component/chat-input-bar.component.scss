@@ -34,38 +34,14 @@ $bar-height: 66px;
 .actions {
 	flex-shrink: 0;
 	margin: 0 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 
 	& > * {
-		font-size: 42px;
+		font-size: 32px;
 		color: $color-dark-text;
-		transform-origin: 50% calc(50% + 4px);
-		transform: translateY(4px);
 		cursor: pointer;
 		user-select: none;
-
-		&:not(:last-child) {
-			margin-right: 0.5rem;
-		}
-	}
-}
-
-.send-icon {
-	color: $color-grey-text;
-	margin-left: 8px;
-}
-
-.send-icon:hover {
-	animation: nod 0.5s;
-}
-
-@keyframes nod {
-	0% {
-		transform: translateY(4px);
-	}
-	30% {
-		transform: rotateZ(-20deg) translateY(4px);
-	}
-	100% {
-		transform: rotateZ(0deg) translateY(4px);
 	}
 }
