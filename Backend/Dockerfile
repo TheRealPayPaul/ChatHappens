@@ -12,4 +12,4 @@ RUN npm run RebuildPrismaClient
 
 EXPOSE 3000
 
-CMD [ "npm", "start" ]
+CMD [  "npm", "run", "start:migrate:prod" ]

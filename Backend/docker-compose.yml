@@ -3,39 +3,44 @@ services:
     api:
         build: .
         depends_on:
-            - mongodb
+            mongodb:
+                condition: service_started
+            mysql:
+                condition: service_healthy
         ports:
             - "3000:3000"
         environment:
             WEBSERVER_PORT: 3000
-            MONGODB_HOST: mongodb
-            MONGODB_PORT: 27017
-            MONGODB_SCHEMA: chat-happens
+            MYSQL_DATABASE_URL: mysql://chathappens:chathappens@mysql:3306/chathappens
+            MONGODB_DATABASE_URL: mongodb://mongodb:27017/chat-happens
             MONGODB_USERNAME: admin
             MONGODB_PASSWORD: admin
-
-    #        command: prisma:dev:deploy
-#    mysql:
-#        image: "mysql"
-#        environment:
-#            MYSQL_DATABASE: 'chat-happens'
-#            MYSQL_USER: 'user'
-#            MYSQL_ROOT_PASSWORD: root
-#        volumes:
-#            - db-data:/foo
+    mysql:
+        image: "mysql:8.0"
+        ports:
+            - "3307:3306"
+        environment:
+            MYSQL_DATABASE: 'chathappens'
+            MYSQL_USER: 'chathappens'
+            MYSQL_PASSWORD: 'chathappens'
+            MYSQL_ROOT_PASSWORD: root
+        healthcheck:
+            test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+            interval: 5s
+            timeout: 5s
+            retries: 10
+        volumes:
+            - mysql-data:/var/lib/mysql
     mongodb:
         image: mongo:7.0.0-rc4
         environment:
-            # provide your credentials here
             - MONGO_INITDB_ROOT_USERNAME=admin
             - MONGO_INITDB_ROOT_PASSWORD=admin
         ports:
             - "27017:27017"
-        volumes:
-            # if you wish to setup additional user accounts specific per DB or with different roles you can use following entry point
-            - "$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
-        # no --auth is needed here as presence of username and password add this option automatically
         command: mongod
-#volumes:
-#    db-data:
-#    message-data:
+        volumes:
+            - mongodb-data:/var/lib/mongodb
+volumes:
+    mysql-data:
+    mongodb-data:

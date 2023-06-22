@@ -2,7 +2,11 @@ import { connect, disconnect } from 'mongoose';
 
 export class SillyGooseService {
     static async connect(): Promise<void> {
-        const url = `mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_SCHEMA}`;
+        const url = process.env.MONGODB_DATABASE_URL;
+        if (!url) {
+            throw new Error('MongoDB connection URL not defined');
+        }
+
         const username = process.env.MONGODB_USERNAME;
         const password = process.env.MONGODB_PASSWORD;
 

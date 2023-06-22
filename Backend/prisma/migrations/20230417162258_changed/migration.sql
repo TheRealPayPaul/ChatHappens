@@ -7,10 +7,10 @@
 
 */
 -- DropForeignKey
-ALTER TABLE `chatuser` DROP FOREIGN KEY `ChatUser_chat_id_fkey`;
+ALTER TABLE `chatuser` DROP FOREIGN KEY `chatuser_chat_id_fkey`;
 
 -- DropForeignKey
-ALTER TABLE `chatuser` DROP FOREIGN KEY `ChatUser_user_id_fkey`;
+ALTER TABLE `chatuser` DROP FOREIGN KEY `chatuser_user_id_fkey`;
 
 -- AlterTable
 ALTER TABLE `chat` DROP PRIMARY KEY,
@@ -30,7 +30,7 @@ ALTER TABLE `user` DROP PRIMARY KEY,
     ADD PRIMARY KEY (`user_id`);
 
 -- AddForeignKey
-ALTER TABLE `ChatUser` ADD CONSTRAINT `ChatUser_chat_id_fkey` FOREIGN KEY (`chat_id`) REFERENCES `Chat`(`chat_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `chatuser` ADD CONSTRAINT `chatuser_chat_id_fkey` FOREIGN KEY (`chat_id`) REFERENCES `chat`(`chat_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ChatUser` ADD CONSTRAINT `ChatUser_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `chatuser` ADD CONSTRAINT `chatuser_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
