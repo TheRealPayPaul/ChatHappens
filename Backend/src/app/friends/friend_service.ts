@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient, User} from '@prisma/client';
 import { UserDTO } from '../../core/dto/user/user_dto';
 import { ChatService } from '../chats/chat_service';
 
@@ -56,7 +56,7 @@ export class FriendService {
                     ],
                 },
             })
-        ).map((user) => UserDTO.toDTO(user));
+        ).map((user: User) => UserDTO.toDTO(user));
     }
 
     public static async isFriends(

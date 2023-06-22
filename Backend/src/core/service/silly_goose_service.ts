@@ -2,17 +2,17 @@ import { connect, disconnect } from 'mongoose';
 
 export class SillyGooseService {
     static async connect(): Promise<void> {
-        const connectUrl = process.env.MONGODB_DATABASE_URL;
-        if (!connectUrl) {
-            throw new Error('Connection URL to MongoDB is not set');
-        }
+        const url = `mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_SCHEMA}`;
+        const username = process.env.MONGODB_USERNAME;
+        const password = process.env.MONGODB_PASSWORD;
 
-        console.info('Connect to MongoDB');
-        await connect(connectUrl, {
+        console.info('Connect to MongoDB with', url, 'and credentials', username, password);
+        await connect(url, {
             auth: {
-                username: process.env.MONGODB_DATABASE_USERNAME,
-                password: process.env.MONGODB_DATABASE_PASSWORD,
+                username,
+                password,
             },
+            authSource: 'admin'
         });
         console.info('Connected to MongoDB');
     }

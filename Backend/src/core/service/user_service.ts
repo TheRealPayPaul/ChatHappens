@@ -91,6 +91,6 @@ export class UserService extends Service {
                     ],
                 },
             })
-        ).map((user) => UserDTO.toDTO(user));
+        ).map((user: User) => UserDTO.toDTO(user));
     }
 }
