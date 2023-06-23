@@ -16,12 +16,10 @@ SocketHandler.getInstance(io);
 app.use(cookieParser());
 app.use(express.json());
 
-// TODO Serve angular app
-app.get('/', (req, res) => {
-    res.json({ message: 'Hello World!!' });
-});
-
 app.use('/api/authorization', authorization_router);
 app.use('/api/app', loggedIn, app_router);
+
+app.get('*.*', express.static(__dirname + '/public'));
+app.use('*', express.static(__dirname + '/public'));
 
 export { server };
