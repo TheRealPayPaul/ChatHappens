@@ -5,7 +5,10 @@ import { SingleChatDTO } from '../models/single-chat-dto.model';
 import { ChatService } from '../services/chat.service';
 import { ChatStateService } from '../services/chat-state.service';
 import { ProfilePictureService } from '../../common/services/profile-picture-service/profile-picture.service';
-import { UserService } from '../../common/services/user-service/user.service';
+import {
+	CurrentUser,
+	UserService,
+} from '../../common/services/user-service/user.service';
 
 @Component({
 	selector: 'app-chat-sidebar',
@@ -16,7 +19,7 @@ export class ChatSidebarComponent implements OnInit {
 	chats: SingleChatDTO[] = [];
 	selectedChatId: string | null;
 
-	currentUserId: string;
+	currentUser: CurrentUser;
 
 	setProfilePicture(e: any): any {
 		this.profilePictureService
@@ -38,7 +41,7 @@ export class ChatSidebarComponent implements OnInit {
 			this.selectedChatId = data?.id ?? null;
 		});
 
-		this.currentUserId = this.userService.getCurrentUserId();
+		this.currentUser = this.userService.getCurrentUser();
 	}
 
 	selectChat(chat: SingleChatDTO): void {

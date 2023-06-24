@@ -1,5 +1,11 @@
 :host {
 	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+span {
+	font-size: 32px;
 }
 
 emoji-mart {
