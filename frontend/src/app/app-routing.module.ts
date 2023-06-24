@@ -6,17 +6,26 @@ import { ChatOverviewComponent } from './chat/chat-overview-component/chat-overv
 import { loggedIn } from './common/route-guards/logged-in.guard';
 import { notLoggedIn } from './common/route-guards/not-logged-in.guard';
 
+const TITLE_POSTFIX = ' | Chat Happens';
+
 const routes: Routes = [
 	{
 		path: 'register',
 		component: RegisterComponent,
 		canActivate: [notLoggedIn],
+		title: 'Register' + TITLE_POSTFIX,
 	},
-	{ path: 'login', component: LoginComponent, canActivate: [notLoggedIn] },
+	{
+		path: 'login',
+		component: LoginComponent,
+		canActivate: [notLoggedIn],
+		title: 'Login' + TITLE_POSTFIX,
+	},
 	{
 		path: '',
 		canActivate: [loggedIn],
 		component: ChatOverviewComponent,
+		title: 'Home ' + TITLE_POSTFIX,
 	},
 	{
 		path: '**',
