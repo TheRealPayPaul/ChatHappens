@@ -31,6 +31,9 @@ import { UserDisplaySearchComponent } from './popup/components/user-display/user
 import { UserDisplaySentRequestsComponent } from './popup/components/user-display/user-display-sent-requests/user-display-sent-requests.component';
 import { CookieModule } from 'ngx-cookie';
 import { ChatMessageBubbleComponent } from './chat/chat-message-bubble/chat-message-bubble.component';
+import { PopupSettingsComponent } from './popup/popup-settings/popup-settings.component';
+import { SettingViewAccountComponent } from './popup/components/setting-view-account/setting-view-account.component';
+import { SettingViewProfileComponent } from './popup/components/setting-view-profile/setting-view-profile.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerComponent } from './chat/emoji-picker/emoji-picker.component';
 
@@ -61,6 +64,9 @@ import { EmojiPickerComponent } from './chat/emoji-picker/emoji-picker.component
 		UserDisplaySearchComponent,
 		UserDisplaySentRequestsComponent,
 		ChatMessageBubbleComponent,
+		PopupSettingsComponent,
+		SettingViewAccountComponent,
+		SettingViewProfileComponent,
 		EmojiPickerComponent,
 	],
 	imports: [

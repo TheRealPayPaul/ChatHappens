@@ -4,6 +4,7 @@ import { PopupFriendsComponent } from 'src/app/popup/popup-friends/popup-friends
 import { SingleChatDTO } from '../models/single-chat-dto.model';
 import { ChatService } from '../services/chat.service';
 import { ChatStateService } from '../services/chat-state.service';
+import { PopupSettingsComponent } from 'src/app/popup/popup-settings/popup-settings.component';
 import { ProfilePictureService } from '../../common/services/profile-picture-service/profile-picture.service';
 import {
 	CurrentUser,
@@ -49,7 +50,7 @@ export class ChatSidebarComponent implements OnInit {
 	}
 
 	clickSettings(): void {
-		console.log('[ChatSidebar] Clicked Settings');
+		this.modalService.open(PopupSettingsComponent);
 	}
 
 	openFriendsPopup(): void {
