@@ -10,7 +10,6 @@ services:
         ports:
             - "3000:3000"
         environment:
-            WEBSERVER_PORT: 3000
             MYSQL_DATABASE_URL: mysql://chathappens:chathappens@mysql:3306/chathappens
             MONGODB_DATABASE_URL: mongodb://mongodb:27017/chat-happens
             MONGODB_USERNAME: admin
@@ -42,7 +41,7 @@ services:
             - "27017:27017"
         command: mongod
         volumes:
-            - mongodb-data:/var/lib/mongodb
+            - mongodb-data:/data/db
 volumes:
     mysql-data:
     mongodb-data:

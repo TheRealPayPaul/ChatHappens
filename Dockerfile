@@ -19,6 +19,7 @@ COPY Backend/prisma prisma/
 RUN npm install --omit=dev
 COPY --from=builder /be/dist .
 COPY --from=builder /fe/dist/frontend public/
+ENV WEBSERVER_PORT=3000
 EXPOSE 3000
 
 CMD [  "npm", "run", "start:migrate:prod" ]
