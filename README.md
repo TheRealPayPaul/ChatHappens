@@ -24,3 +24,5 @@ Paul Panosch [ Fullstack ] [ Designer ]
 - WebSockets: Socket.io
 - Authentication: JsonWebTokens (JWT)
 - Testing: Jest & Supertest
+### Depolyment
+- Docker
