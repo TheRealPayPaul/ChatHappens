@@ -24,5 +24,8 @@ Paul Panosch [ Fullstack ] [ Designer ]
 - WebSockets: Socket.io
 - Authentication: JsonWebTokens (JWT)
 - Testing: Jest & Supertest
-### Depolyment
+## Datenbanken
+- MySQL
+- MongoDB
+## Deployment
 - Docker
