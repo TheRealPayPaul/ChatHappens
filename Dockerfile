@@ -8,7 +8,7 @@ RUN npm run build
 
 WORKDIR /fe
 COPY frontend/package*.json ./
-RUN npm install --omit=dev
+RUN npm install
 COPY frontend .
 RUN node_modules/.bin/ng build
 
