@@ -8,6 +8,7 @@ import {
 	Validators,
 } from '@angular/forms';
 import { InputType } from 'src/app/common/components/input/input-type.enum';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
 	selector: 'app-setting-view-account',
@@ -19,7 +20,10 @@ export class SettingViewAccountComponent {
 	form_email: FormGroup;
 	form_password: FormGroup;
 
-	constructor(private fb: FormBuilder) {
+	constructor(
+		private fb: FormBuilder,
+		private settingsService: SettingsService
+	) {
 		this.form_email = this.fb.group({
 			email: [
 				'',
@@ -58,16 +62,34 @@ export class SettingViewAccountComponent {
 		return newPassword === repeatedPassword;
 	}
 
-	saveSettings(): void {
-		console.log('Saved Settings');
-	}
-
 	saveSettingsPassword(): void {
+		if (!this.form_password.valid) return;
+
 		if (!this.areEnteredPasswordsSame()) {
 			this.form_password.setErrors({ 'not-matching': true });
 			return;
 		}
 
-		console.log('Saved Password');
+		const newPassword = this.form_password.get('new_password')?.value;
+		if (!newPassword) return;
+
+		this.settingsService.updatePassword(newPassword).subscribe({
+			next: () => {
+				this.form_password.reset();
+			},
+		});
+	}
+
+	saveSettingsEmail(): void {
+		if (!this.form_email.valid) return;
+
+		const newEmail = this.form_email.get('email')?.value;
+		if (!newEmail) return;
+
+		this.settingsService.updateEmail(newEmail).subscribe({
+			next: () => {
+				this.form_email.reset();
+			},
+		});
 	}
 }

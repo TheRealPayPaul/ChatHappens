@@ -2,10 +2,10 @@ import DTOValidator from '../dto_validator';
 import { RegisterDTO } from '../../../authorization/register/register_dto';
 
 export default class RegisterDTOValidator extends DTOValidator {
-    private static readonly MAX_EMAIL_LENGTH: number = 128;
-    private static readonly EMAIL_REGEX: RegExp = /^.+@.+$/;
-    private static readonly MAX_PASSWORD_LENGTH: number = 128;
-    private static readonly PASSWORD_REGEX: RegExp = /\s/g;
+    public static readonly MAX_EMAIL_LENGTH: number = 128;
+    public static readonly EMAIL_REGEX: RegExp = /^.+@.+$/;
+    public static readonly MAX_PASSWORD_LENGTH: number = 128;
+    public static readonly PASSWORD_REGEX: RegExp = /\s/g;
 
     /**
      * Checks if the data of the object is complete.

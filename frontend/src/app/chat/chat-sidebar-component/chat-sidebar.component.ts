@@ -22,14 +22,7 @@ export class ChatSidebarComponent implements OnInit {
 
 	currentUser: CurrentUser;
 
-	setProfilePicture(e: any): any {
-		this.profilePictureService
-			.setProfilePicture(e.target.files[0])
-			.subscribe();
-	}
-
 	constructor(
-		private profilePictureService: ProfilePictureService,
 		private modalService: ModalService,
 		private chatService: ChatService,
 		private chatStateService: ChatStateService,
