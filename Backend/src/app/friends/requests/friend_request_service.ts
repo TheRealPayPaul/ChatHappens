@@ -1,6 +1,8 @@
 import { FriendRequestDTO } from './model/friend_request_dto';
-import { PrismaClient } from '@prisma/client';
+import {FriendRequest, PrismaClient, User} from '@prisma/client';
 import { FriendService } from '../friend_service';
+
+type FriendRequestInclude = FriendRequest & { from: User; to: User }
 
 const client = new PrismaClient();
 
@@ -115,7 +117,7 @@ export class FriendRequestService {
                     to: true,
                 },
             })
-        ).map((friendRequest) => FriendRequestDTO.toDTO(friendRequest));
+        ).map((friendRequest: FriendRequestInclude) => FriendRequestDTO.toDTO(friendRequest));
     }
 
     public static async getSentFriendRequests(
@@ -131,6 +133,6 @@ export class FriendRequestService {
                     to: true,
                 },
             })
-        ).map((friendRequest) => FriendRequestDTO.toDTO(friendRequest));
+        ).map((friendRequest: FriendRequestInclude) => FriendRequestDTO.toDTO(friendRequest));
     }
 }

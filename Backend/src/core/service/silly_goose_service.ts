@@ -2,8 +2,22 @@ import { connect, disconnect } from 'mongoose';
 
 export class SillyGooseService {
     static async connect(): Promise<void> {
-        console.info('Connect to MongoDB');
-        await connect('mongodb://127.0.0.1:27017/chat-happens');
+        const url = process.env.MONGODB_DATABASE_URL;
+        if (!url) {
+            throw new Error('MongoDB connection URL not defined');
+        }
+
+        const username = process.env.MONGODB_USERNAME;
+        const password = process.env.MONGODB_PASSWORD;
+
+        console.info('Connect to MongoDB with', url, 'and credentials', username, password);
+        await connect(url, {
+            auth: {
+                username,
+                password,
+            },
+            authSource: 'admin'
+        });
         console.info('Connected to MongoDB');
     }
 

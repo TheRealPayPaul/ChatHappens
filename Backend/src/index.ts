@@ -12,7 +12,7 @@ async function start(): Promise<void> {
 
     server.listen(process.env.WEBSERVER_PORT, () => {
         console.log(
-            `Chat Happens listening on port ${process.env.WEBSERVER_PORT}`
+            `Chat Happens listening on port ${ process.env.WEBSERVER_PORT }`
         );
     });
 

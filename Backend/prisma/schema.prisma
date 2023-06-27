@@ -10,6 +10,7 @@ datasource db {
 // MySQL
 
 model SingleChat {
+    @@map("singlechat")
     chat_id    String   @id @default(uuid())
     created_on DateTime @default(now())
     user_1     User     @relation("chat_user_1", fields: [user_1_id], references: [user_id])
@@ -19,6 +20,7 @@ model SingleChat {
 }
 
 model User {
+    @@map("user")
     user_id             String          @id @default(uuid())
     email               String          @unique @db.VarChar(128)
     display_name        String          @db.VarChar(45)
@@ -34,6 +36,7 @@ model User {
 }
 
 model FriendRequest {
+    @@map("friendrequest")
     friend_request_id String @id @default(uuid())
     from              User   @relation("friend_request_from", fields: [from_user_id], references: [user_id])
     from_user_id      String
@@ -42,6 +45,7 @@ model FriendRequest {
 }
 
 model Friend {
+    @@map("friend")
     friend_id String @id @default(uuid())
     user_1    User   @relation("friend_user_1", fields: [user_1_id], references: [user_id])
     user_1_id String

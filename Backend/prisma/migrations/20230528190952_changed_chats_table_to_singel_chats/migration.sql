@@ -6,10 +6,10 @@
 
 */
 -- DropForeignKey
-ALTER TABLE `chatuser` DROP FOREIGN KEY `ChatUser_chat_id_fkey`;
+ALTER TABLE `chatuser` DROP FOREIGN KEY `chatuser_chat_id_fkey`;
 
 -- DropForeignKey
-ALTER TABLE `chatuser` DROP FOREIGN KEY `ChatUser_user_id_fkey`;
+ALTER TABLE `chatuser` DROP FOREIGN KEY `chatuser_user_id_fkey`;
 
 -- DropTable
 DROP TABLE `chat`;
@@ -18,7 +18,7 @@ DROP TABLE `chat`;
 DROP TABLE `chatuser`;
 
 -- CreateTable
-CREATE TABLE `SingleChat` (
+CREATE TABLE `singlechat` (
     `chat_id` VARCHAR(191) NOT NULL,
     `created_on` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `user_1_id` VARCHAR(191) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE `SingleChat` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `SingleChat` ADD CONSTRAINT `SingleChat_user_1_id_fkey` FOREIGN KEY (`user_1_id`) REFERENCES `User`(`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `singlechat` ADD CONSTRAINT `singlechat_user_1_id_fkey` FOREIGN KEY (`user_1_id`) REFERENCES `user`(`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `SingleChat` ADD CONSTRAINT `SingleChat_user_2_id_fkey` FOREIGN KEY (`user_2_id`) REFERENCES `User`(`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `singlechat` ADD CONSTRAINT `singlechat_user_2_id_fkey` FOREIGN KEY (`user_2_id`) REFERENCES `user`(`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
