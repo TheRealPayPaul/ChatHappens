@@ -1,19 +1,18 @@
 <form>
 	<app-separator title="Change Picture"></app-separator>
-	<div class="picture-container">
-		<div><img src="assets/placeholder_pic.png" /></div>
-		<div class="empty-picture">
-			<span class="material-symbols-rounded">image</span>
-			<span>Drag Image</span>
-		</div>
-	</div>
-	<button type="submit">Change Picture</button>
+	<label class="file-input-label">Profile Picture</label>
+	<input
+		class="file-input"
+		(change)="setProfilePicture($event)"
+		type="file"
+		accept="image/*"
+	/>
 </form>
 
 <form
 	[formGroup]="form_display_name"
 	class="setting-form"
-	(ngSubmit)="saveSettings()"
+	(ngSubmit)="saveSettingsDisplayName()"
 >
 	<app-separator title="Change Display Name"></app-separator>
 	<app-form-error-box [form]="form_display_name"></app-form-error-box>

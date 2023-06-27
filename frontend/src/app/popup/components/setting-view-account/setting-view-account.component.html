@@ -1,4 +1,8 @@
-<form [formGroup]="form_email" class="setting-form" (ngSubmit)="saveSettings()">
+<form
+	[formGroup]="form_email"
+	class="setting-form"
+	(ngSubmit)="saveSettingsEmail()"
+>
 	<app-separator title="Change Email"></app-separator>
 	<app-form-error-box [form]="form_email"></app-form-error-box>
 	<app-input
